@@ -1,0 +1,118 @@
+<div class="container rs_header_content_container">
+    <div class="rs_inner_shaddow_details">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-warning rs_flignt">Flights</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <form name="myForm" action="" class="rs_form_header" method="post">     
+                        <div class="col-md-3 col-sm-3 col-xs-12 rs_aro">
+                            <span class="help-block rs_form_labels small-font" > FROM</span>
+                            <input ng-model="from" ng-required="true" list="myListItems" type="text" class="form-control" placeholder="From" /><img src="assests/img/aroplane1.png" class="rs_aro_img" alt="No-Icon">
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <span class="help-block rs_form_labels small-font" >  TO</span>
+                            <input ng-model="destination" ng-required="true" list="myListItems" type="text" class="form-control" placeholder="To" />
+                            <datalist id="myListItems" ng-model="selectedOne" placeholder="dsdasdas" >
+                                <option ng-repeat="t in availableTags" value="{{t.iata}}" selected="{{t.iata}}" > {{t.name}} </option>
+                            </datalist>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <span class="help-block rs_form_labels small-font" > DEPARTURE</span>
+                            <p class="input-group date" >
+                                <input type="text" class="form-control" id="datetimepicker1" disabled="true"
+                                       uib-datepicker-popup="{{format}}" ng-model="myDate" 
+                                       is-open="status.opened" min-date="minDate" max-date="maxDate" 
+                                       datepicker-options="dateOptions"
+                                       ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event)"><span class="input-group-addon rs_group_adon input-group"><span class="glyphicon glyphicon-calendar"></span></span></button>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <span class="help-block rs_form_labels small-font" >PASSENGERS</span>
+                            <input ng-model="seats" name="myField" id="seats" required type="number"  min="1" class="form-control"  />
+                            <div ng-messages="myForm.myField.$error" role="alert">
+                                <div ng-message="required"> you did not enter number of seats</div>
+                                <div ng-message="min">minimum value is 1</div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-12 rs_no_padding rs_serach">
+                            <button ng-click="getFlight();
+                                        searchData()" type="button" class="btn btn-warning rs_srchbtn">SEARCH</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="tableHidde">
+            <div class="col-md-3 col-sm-3 col-xs-12 rs_aro">
+                <input type="button" ng-click="order('origin')"   />From
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 rs_aro">
+                <input type="button" ng-click="order('destination')"   />To
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 rs_aro">
+                <input type="button" ng-click="order('totalPrice')" />Price
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 rs_aro">
+                <input type="button" ng-click="order('traveltime')" />Duration 
+            </div>
+        </div>
+    </div>
+</div>
+<article>
+    <section id="rs_main_body">
+        <div class="container" >
+            <div class="row">
+                <div ng-show="errorScreen">
+                    <h2 class="warning">Something went wrong!</h2>
+                    <h3 class="warning">Please check your inputs and try again</h3>
+                </div>
+
+                <div ng-hide="hiddeLoading" >
+                    <div class="col-md-4" ></div>
+                    <img src="https://cutpricetravel.com.au/Content/Images/uploaded/flight-loader2.gif" 
+                         style="float: top; alignment-adjust: central; "   
+                         align="middle|top"  />
+                </div>
+                <div class="col-md-12" ng-show="tableHidde">
+                    <div ng-repeat="flight in data | orderBy : predicate :reverse track by $index  " class="rs_air_shedule"> 
+                        <ul class="rs_air_shedule" >
+                            <li><th>Airline : </th> {{flight.airline  }}</li>
+                            <li><th>Flight ID : <th>{{flight.flightID | limitTo:7  }}</li>
+                            <li><th>Tickets : </th>{{flight.numberOfSeats}}</li>
+                            <li><th>Date and Time : </th>{{flight.date| date:'MM/dd/yyyy HH:mm':'UTC'}}</li>
+                        </ul>
+                        <ul class="rs_air_shedule" >
+                            <li>{{flight.totalPrice| currency}}</li>
+                            <li>{{flight.traveltime| minutes}}</li>
+                            <li>{{flight.origin | flightids  }}</li>
+                            <li>{{flight.destination}}</li>
+                            <li ng-show="!isAuthenticated">
+
+                                <button type="button" class="btn btn-warning rs_srchbtn"  data-toggle="modal" data-target="#myModal">Book</button>
+
+                            </li>
+
+                            <li ng-show="isAuthenticated">     
+                                <a href="#/view4" class="btn rs_srchbtn"  ng-click="
+                                                select(flight);
+                                                setBook();
+                                                selectTab(4);
+                                                removeTask(flight.flightID, flight.destination, flight.rootURL, username);
+                                   "  >Book</a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
