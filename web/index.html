@@ -4,6 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="verify-v1" content="8Fcv4zU4kEpmqFt1JgX8TNobfjaWLWwA7/MpesGh5B4=" />
         <link rel="stylesheet" media="screen" type="text/css" href="a.css" />
+        
          <meta name="description" content="">
     
     
@@ -38,7 +39,7 @@
               <li><a href="#/view4">Using the Seed</a></li>
             </ul>
                 
-            <form class="navbar-right" role="form" ng-show="!isAuthenticated" ng-submit="login()"  >
+            <form class="navbar-form navbar-right" role="form" ng-show="!isAuthenticated" ng-submit="login()"  >
                 <ul><li>
                 <input type="text" style="width:10em;" placeholder="User name" class="form-control"
                        ng-model="user.username">
@@ -57,7 +58,6 @@
               <button type="submit" ng-click="logout()">Logout
               </button>
             
-            </li>
           </div>
       </nav>        </div>
         <div id="cont" ng-view>
