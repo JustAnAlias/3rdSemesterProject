@@ -6,6 +6,7 @@
 package tester;
 
 import facades.AirlineFacade;
+import facades.MetaFacade;
 
 /**
  *
@@ -15,7 +16,10 @@ public class Tester {
     public static void main(String[] args) {
         
         AirlineFacade af = new AirlineFacade();
-        System.out.println(af.getActiveAirlines());
+        MetaFacade mf = new MetaFacade();
+        
+        //Add http://angularairline-plaul.rhcloud.com to database from Postman and it should work.
+        System.out.println(mf.getFlights("CPH", "2016-01-01T00:00:00.000Z", 2));
     }
     
 }
