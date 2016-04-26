@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entity.Role</class>
     <class>entity.User</class>
+    <class>entity.AirlineEntity</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull"/>
@@ -14,8 +15,7 @@
       <property name="eclipselink.canonicalmodel.subpackage" value="development"/>
     </properties>
   </persistence-unit>
-  
-   <persistence-unit name="PU_OPENSHIFT" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="PU_OPENSHIFT" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <non-jta-data-source>java:/comp/env/jdbc/MySQLDS</non-jta-data-source>
     <class>entity.User</class>
