@@ -34,9 +34,12 @@ public class MetaSearch {
     @Produces(MediaType.APPLICATION_JSON)
     public String getAirlines(@PathParam("from") String from, @PathParam("date") String date,
             @PathParam("tickets") int tickets) {
-
+        try{
         return mf.getFlights(from, date, tickets);
-
+        }
+        catch(Exception e){
+            return new Exception("something went wrong").toString();
+        }
     }
 
 }

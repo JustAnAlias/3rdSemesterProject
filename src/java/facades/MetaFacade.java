@@ -9,45 +9,42 @@ import entity.AirlineEntity;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  *
- * @author Eske Wolff
+ * @author Eske Wolff & M!chael Rulle
  */
 public class MetaFacade {
 
+    ExecutorService executor;
     AirlineFacade af = new AirlineFacade();
+    StringBuilder sb = new StringBuilder();
 
-    public String getFlights(String from, String date, int tickets) {
-
+    public String getFlights(String from, String date, int tickets) throws InterruptedException, ExecutionException, TimeoutException {
+        executor = Executors.newFixedThreadPool(4);
         StringBuilder sb = new StringBuilder();
-        URLConnection urlConn = null;
-        BufferedReader reader = null;
+
         List listAirline = af.getActiveAirlines();
+        System.out.println("number of airlines in the database: " + listAirline.size());
+        List<Future> futures = new ArrayList();
         for (Object a : listAirline) {
-
-            try {
-                AirlineEntity ae = (AirlineEntity)a;
-                String myurl = ae.getUrl() + "/api/flightinfo/" + from + "/" + date + "/" + tickets;
-                URL url = new URL(myurl);
-                urlConn = url.openConnection();
-                if (urlConn != null) {
-                    urlConn.setReadTimeout(60 * 1000);
-                }
-                if (urlConn != null && urlConn.getInputStream() != null) {
-                    reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-                    if (reader != null) {
-                        int cp;
-                        while ((cp = reader.read()) != -1) {
-                            sb.append((char) cp);
-                        }
-                        reader.close();
-                    }
-                }
-            } catch (Exception e) {
-
-            }
+            AirlineEntity ae = (AirlineEntity) a;
+            Callable c = new URLCaller(ae.getUrl(), from, null, date, tickets);
+            Future<String> fut = executor.submit(c);
+            futures.add(fut);
+        }
+        for (Future<String> future : futures) {
+            sb.append(future.get(5, TimeUnit.SECONDS));
         }
         return sb.toString();
     }
