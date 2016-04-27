@@ -1,35 +1,45 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>FlightHunter</title>
-	<meta name="verify-v1" content="8Fcv4zU4kEpmqFt1JgX8TNobfjaWLWwA7/MpesGh5B4=" />
-	<link rel="stylesheet" media="screen" type="text/css" href="a.css" />
-	<script type="text/javascript" src="g/mootools.js"></script>
-        <script type="text/javascript" src="g/core.js"></script>
-	<!--[if IE]><meta http-equiv="imagetoolbar" content="no" /><meta http-equiv="X-UA-Compatible" content="IE=8" /><![endif]-->
-	<!--Site by Eirik Backer-->
+<title>Flight Hunter</title>
+<link rel="stylesheet" media="screen" type="text/css" href="assets/css/custom.css" />
+
+<script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script src='bower_components/angular-animate/angular-animate.min.js'></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/view1/view1.js"></script>
+    <script src="app/view2/view2.js"></script>
+    <script src="app/view3/view3.js"></script>
+    <script src="app/view4/view4.js"></script>
+    <script src="app/components/auth.js"></script>
+    <script src="app/components/filters.js"></script>
+    <script src="app/components/directives.js"></script>
+    <script src="app/components/factories.js"></script>
+    <script src="app/components/services.js"></script>
+    
+
+
 </head>
 <body>
-	<div id="menu">
-		<h1><a href="#"><b>FlightHunter</a></h1>
-		<div>
-			<ul>
-				<li><a href="#">Menu</a></li>
-				<li><a href="#">SHANGHAI</a></li>
-				<li><a href="#">BEIJING</a></li>
-			</ul>
-		</div>
-	</div>
-		<div id="cont">
-                    <div class="box large left">
-	<h2><b>GOTO</b>CHINA</h2>
-	This website is the result of a study-trip to Shanghai and Beijing, made by 17 
-	Norwegian students in February 2008. We hope this site can be helpful for others 
-	visiting China. Through this website we will give a presentation of our trip, 
-	and share tips and knowledge we gained when traveling.
+<div class="wrapper">
+    <div class="header">
+        <ul id="menu">
+              <li><a href="#/view1">Home</a></li>
+              <li><a href="#/view2">Page for Users</a></li>
+              <li><a href="#/view3">Page for Admins</a></li>
+              <li><a href="#/view4">Using the Seed</a></li>
+            </ul>
+    </div>
+    <div class="content">
+        <div ng-view>
+            </div>
+    </div>
+    <div class="footer">
+        footer
+    </div>
 </div>
-	</div>	
-    <div id="bg"><div><table cellpadding="0" cellspacing="0"><tr><td><img alt="" src="bg.jpg" /></td></tr></table></div></div>
 </body>
 </html>
