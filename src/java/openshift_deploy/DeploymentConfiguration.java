@@ -3,6 +3,7 @@ package openshift_deploy;
 
 
 
+import entity.AirlineEntity;
 import entity.Role;
 import entity.User;
 import facades.UserFacade;
@@ -58,12 +59,15 @@ public class DeploymentConfiguration implements ServletContextListener {
       admin.AddRole(adminRole);
       both.AddRole(userRole);
       both.AddRole(adminRole);
+      AirlineEntity ae = new AirlineEntity();
+      ae.setUrl("http://angularairline-plaul.rhcloud.com");
+      ae.setActive(true);
 
       try {
         em.getTransaction().begin();
         em.persist(userRole);
         em.persist(adminRole);
-
+        em.persist(ae);
         em.persist(user);
         em.persist(admin);
         em.persist(both);

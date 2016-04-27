@@ -32,10 +32,25 @@ public class MetaSearch {
     @GET
     @Path("/{from}/{date}/{tickets}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAirlines(@PathParam("from") String from, @PathParam("date") String date,
+    public String getFlightsFrom(@PathParam("from") String from, @PathParam("date") String date,
             @PathParam("tickets") int tickets) {
         try{
-        return mf.getFlights(from, date, tickets);
+        return mf.getFlights(from, null, date, tickets);
+        }
+        catch(Exception e){
+            return new Exception("something went wrong").toString();
+        }
+    }
+    
+    @GET
+    @Path("/{from}/{to}/{date}/{tickets}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getFlightsFromTo( @PathParam("from") String from,
+                                    @PathParam("to") String to,
+                                    @PathParam("date") String date,
+                                    @PathParam("tickets") int tickets) {
+        try{
+        return mf.getFlights(from, to, date, tickets);
         }
         catch(Exception e){
             return new Exception("something went wrong").toString();

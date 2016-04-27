@@ -30,7 +30,7 @@ public class MetaFacade {
     AirlineFacade af = new AirlineFacade();
     StringBuilder sb = new StringBuilder();
 
-    public String getFlights(String from, String date, int tickets) throws InterruptedException, ExecutionException, TimeoutException {
+    public String getFlights(String from, String to, String date, int tickets) throws InterruptedException, ExecutionException, TimeoutException {
         executor = Executors.newFixedThreadPool(4);
         StringBuilder sb = new StringBuilder();
 
@@ -48,4 +48,5 @@ public class MetaFacade {
         }
         return sb.toString();
     }
+    
 }
