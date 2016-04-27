@@ -50,6 +50,7 @@ public class MetaSearch {
                                     @PathParam("date") String date,
                                     @PathParam("tickets") int tickets) {
         try{
+            
         return mf.getFlights(from, to, date, tickets);
         }
         catch(Exception e){

@@ -32,14 +32,13 @@ public class MetaFacade {
 
     public String getFlights(String from, String to, String date, int tickets) throws InterruptedException, ExecutionException, TimeoutException {
         executor = Executors.newFixedThreadPool(4);
-        StringBuilder sb = new StringBuilder();
 
         List listAirline = af.getActiveAirlines();
         System.out.println("number of airlines in the database: " + listAirline.size());
         List<Future> futures = new ArrayList();
         for (Object a : listAirline) {
             AirlineEntity ae = (AirlineEntity) a;
-            Callable c = new URLCaller(ae.getUrl(), from, null, date, tickets);
+            Callable c = new URLCaller(ae.getUrl(), from, to, date, tickets);
             Future<String> fut = executor.submit(c);
             futures.add(fut);
         }
