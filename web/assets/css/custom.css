@@ -45,7 +45,7 @@ body {
    padding: 0px;
    margin: 0px;
    font-size: 90%;
-   background: url(bg2.png) no-repeat center center fixed;
+   background: url(../img/bg2.jpg) no-repeat center center fixed;
    background-size: cover;
 
 }
