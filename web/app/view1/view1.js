@@ -32,7 +32,7 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 
 .controller('View1Ctrl', ["$scope", "$http", function($scope, $http) {
-    $scope.output = {};
+//    $scope.output = {};
     $scope.getFlights = function() {
         return $http({
             method: 'GET',
@@ -42,6 +42,9 @@ angular.module('myApp.view1', ['ngRoute'])
             contentType: "application/json"
         }).success(function(data, status, headers, config) {
             $scope.output = data;
+            if($scope.output.length === 0){
+                alert("No flights found. Please try again.");
+            }
         }).
         error(function(data, status, headers, config) {
         })

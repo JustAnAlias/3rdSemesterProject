@@ -10,18 +10,17 @@
   <option value="CDG">Paris</option>
 </select>
         TO: <select ng-model="dest" id="slct2" name="slct2"></select>
-        Date: 	<input type="text" name="date" ng-model="date" value="2016-01-01T00:00:00.000Z">
+        Date: 	<input type="text" name="date" ng-model="date">
         Seats: <input size="1" type="text" name="number" ng-model="number" value="2">
         <button type="submit" class="btn btn-success">Search</button>
 
 
 
     </form>
-    <b>Airline name: </b>                   {{output.airline}} <br>
     <br>
     <div style="width: 25em ; border-left: 12em">
     <uib-accordion>
-        <uib-accordion-group ng-repeat="unit in output.flights" >
+        <uib-accordion-group ng-repeat="unit in output.flights">
             <uib-accordion-heading>
                 {{output.airline}} {{unit.flightNumber}} - Price: {{unit.totalPrice}}
             </uib-accordion-heading>

@@ -25,7 +25,7 @@ public class Tester {
         
         //Add http://angularairline-plaul.rhcloud.com to database from Postman and it should work.
         try{
-        System.out.println(mf.getFlights("CPH", null, "2016-01-01T00:00:00.000Z", 2));
+        System.out.println(mf.getFlights("CPH", "STN", "2016-01-01T00:00:00.000Z", 2));
         }
         catch(Exception e){
             e.printStackTrace();
