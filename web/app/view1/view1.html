@@ -1,9 +1,16 @@
 
 <div  ng-controller="View1Ctrl">
     <form role="form" ng-submit="getFlights()" >
-        FROM: <input type="text" name="from" ng-model="from">
-        TO: <input type="text" name="to" ng-model="dest">
-        Date: 
+        FROM: <select ng-model="from" id="slct1" name="slct1" onchange="populate(this.id,'slct2')">
+  <option value=""></option>
+  <option value="CPH">Copenhagen</option>
+  <option value="SXF">Berlin</option>
+  <option value="BCN">Barcelona</option>
+  <option value="STN">London</option>
+  <option value="CDG">Paris</option>
+</select>
+        TO: <select ng-model="dest" id="slct2" name="slct2"></select>
+        Date: 	<input type="text" name="date" ng-model="date" value="2016-01-01T00:00:00.000Z">
         Seats: <input type="text" name="number" ng-model="number" value="2">
         <button type="submit" class="btn btn-success">Search</button>
 
