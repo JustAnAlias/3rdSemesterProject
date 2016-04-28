@@ -3,6 +3,7 @@ package facades;
 import entity.AirlineEntity;
 import security.IUserFacade;
 import entity.User;
+import exceptions.CouldNotAddEntityException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,14 +24,14 @@ public class AirlineFacade {
 
     }
 
-    public <T> void addEntity(T ie) {
+    public <T> void addEntity(T ie) throws CouldNotAddEntityException {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(ie);
             em.getTransaction().commit();
         } catch (Exception e) {
-
+            throw new CouldNotAddEntityException("Could not add " + ie.getClass().getCanonicalName() + " to the database!");
         } finally {
             em.close();
         }

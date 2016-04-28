@@ -3,6 +3,7 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entity.AirlineEntity;
+import exceptions.CouldNotAddEntityException;
 import facades.AirlineFacade;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -44,7 +45,7 @@ public class Airline {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addAirline(String json) {
+    public Response addAirline(String json) throws CouldNotAddEntityException {
 
         AirlineEntity ae = gson.fromJson(json, AirlineEntity.class);
         af.addEntity(ae);
