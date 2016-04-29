@@ -43,7 +43,7 @@ angular.module('myApp.view1', ['ngRoute'])
         }).success(function(data, status, headers, config) {
             $scope.output = data;
             if($scope.output.length === 0){
-                alert("No flights found. Please try again.");
+//                alert("No flights found. Please try again.");
             }
         }).
         error(function(data, status, headers, config) {
