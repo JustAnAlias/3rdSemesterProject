@@ -4,8 +4,8 @@
 angular.module('myApp', [
   'ngRoute',
   'ngAnimate',
-  'angular-jwt',
   'ui.bootstrap',
+  'angular-jwt',
   'myApp.security',
   'myApp.view1',
   'myApp.view2',

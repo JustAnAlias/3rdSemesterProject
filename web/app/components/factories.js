@@ -5,10 +5,30 @@
 angular.module('myApp.factories', []).
   factory('InfoFactory', function () {
     var info = "Hello World from a Factory";
-    var getInfo = function getInfo(){
-      return info;
-    };
+    var booking = {};
+    var response = {};
+    
     return {
-      getInfo: getInfo
-    };
+    getInfo: function getInfo() {
+        return info;
+    },
+    setInfo: function setInfo(someData) {
+        info = someData;
+    },
+    setBooking: function (bookingIn) {
+        booking = bookingIn;
+    },
+    getBooking: function () {
+        return booking;
+    },
+
+    setResponse: function (responseIn) {
+        response = responseIn;
+    },
+    getResponse: function () {
+        return response;
+}
+};
+
+    
   });

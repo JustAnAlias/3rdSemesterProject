@@ -1,16 +1,29 @@
 
 <div  ng-controller="View1Ctrl">
     <form role="form" ng-submit="getFlights()" >
-        FROM: <select ng-model="from" id="slct1" name="slct1" onchange="populate(this.id,'slct2')" required>
-  <option value=""></option>
-  <option value="CPH">Copenhagen</option>
-  <option value="SXF">Berlin</option>
-  <option value="BCN">Barcelona</option>
-  <option value="STN">London</option>
-  <option value="CDG">Paris</option>
-</select>
+        FROM: <select ng-model="from" id="slct1" name="slct1" onchange="populate(this.id, 'slct2')" required>
+            <option value=""></option>
+            <option value="CPH">Copenhagen</option>
+            <option value="SXF">Berlin</option>
+            <option value="BCN">Barcelona</option>
+            <option value="STN">London</option>
+            <option value="CDG">Paris</option>
+        </select>
         TO: <select ng-model="dest" id="slct2" name="slct2" required></select>
-        Date: 	<input type="text" name="date" ng-model="date" required>
+        Date: 	 
+        <button type="button" class="btn btn-default" ng-click="open($event)">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </button>
+
+        <input type="text" id="datetimepicker1" disabled="true"
+                       uib-datepicker-popup="yyyy/MM/dd" 
+                       ng-model="date" 
+                       is-open="status.opened" 
+                       min-date="minDate" 
+                       max-date="maxDate" 
+                       datepicker-options="dateOptions"
+                       ng-required="true" close-text="Close" />
+
         Seats: <input size="1" type="text" name="number" ng-model="number" value="2" required>
         <button type="submit" class="btn btn-success">Search</button>
 
@@ -20,26 +33,26 @@
     <br>
     <div ng-show="output.length === 0" class="ng-hide">Ingen resultater fundet til {{dest}}. Prøv igen !</div>
     <div style="width: 25em ; border-left: 12em">
-    <uib-accordion>
-        <uib-accordion-group ng-repeat="unit in output.flights">
-            <uib-accordion-heading>
-                {{output.airline}} {{unit.flightNumber}} - Price: {{unit.totalPrice}}
-            </uib-accordion-heading>
-            <ul>
-                <li><b>flightID: </b> {{unit.flightID}} </li>
-                <li><b>Seats:</b> {{unit.numberOfSeats}} </li>
-                <li><b>Date:</b> {{unit.date}} </li>
-                <li><b>PRICE:</b> {{unit.totalPrice}} </li>
-                <li><b>Traveltime:</b> {{unit.traveltime}} </li>
-                <li><b>From:</b> {{unit.origin}} </li>
-                <li><b>Destination:</b> {{unit.destination}} </li>
-                <li><b>Flight Number:</b> {{unit.flightNumber}} </li>
-                    
-               
+        <uib-accordion>
+            <uib-accordion-group ng-repeat="unit in output.flights">
+                <uib-accordion-heading>
+                    {{output.airline}} {{unit.flightNumber}} - Price: {{unit.totalPrice}}
+                </uib-accordion-heading>
+                <ul>
+                    <li><b>flightID: </b> {{unit.flightID}} </li>
+                    <li><b>Seats:</b> {{unit.numberOfSeats}} </li>
+                    <li><b>Date:</b> {{unit.date}} </li>
+                    <li><b>PRICE:</b> {{unit.totalPrice}} </li>
+                    <li><b>Traveltime:</b> {{unit.traveltime}} </li>
+                    <li><b>From:</b> {{unit.origin}} </li>
+                    <li><b>Destination:</b> {{unit.destination}} </li>
+                    <li><b>Flight Number:</b> {{unit.flightNumber}} </li>
+
+
                 </ul>
-        </uib-accordion-group>
-    </uib-accordion>
-</div>
+            </uib-accordion-group>
+        </uib-accordion>
+    </div>
 
 
 </div>
