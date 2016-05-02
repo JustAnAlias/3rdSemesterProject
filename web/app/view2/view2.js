@@ -65,7 +65,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 var booking = {};
                 var passenger = {};
 
-                $scope.removeTask = function (flightId, destinaTion, uRl, resName) {
+                $scope.removeTask = function (flightId, destinaTion, resName) {
 
                     booking.flightID = flightId;
 //                    booking.to = destinaTion;

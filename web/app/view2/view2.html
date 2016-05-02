@@ -45,13 +45,12 @@
                     <li><b>From:</b> {{unit.origin}} </li>
                     <li><b>Destination:</b> {{unit.destination}} </li>
                     <li><b>Flight Number:</b> {{unit.flightNumber}} </li>
-                    {{unit.rootURL == "http://angularjs.com"}}
                     <li>
                             <a href="#/view3" ng-click="
                                 select(unit);
                                         setSeats(unit.numberOfSeats);
                                         setBook();
-                                        removeTask(unit.flightID, unit.destination , unit.rootURL, username);
+                                        removeTask(unit.flightID, unit.destination , username);
                                         "  >book</a>
                         </li>
 
