@@ -14,8 +14,8 @@ angular.module('myApp.view2', ['ngRoute'])
                 $scope.today = function () {
                     $scope.date = new Date();
                 };
-
                 $scope.today(); // Presets date to todays date
+
                 $scope.clear = function () {
                     $scope.date = null;
                 }; // date clear button
@@ -55,51 +55,39 @@ angular.module('myApp.view2', ['ngRoute'])
                     })
                 };
 
-
                 // Booking
-                $scope.setSeats = function (seats){
-                    $scope.seats = seats;
-                }
-                var self = this;
-
+                // Variables
                 var booking = {};
                 var passenger = {};
 
-                $scope.removeTask = function (flightId, destinaTion, resName) {
-
-                    booking.flightID = flightId;
-//                    booking.to = destinaTion;
-                    booking.to_ = destinaTion;
-//                    booking.URL = uRl;
-                    booking.ReserveeName = resName;
-                    console.log(resName);
-
+                // Set variables
+                $scope.setSeats = function (seats){
+                    $scope.seats = seats;
                 };
-
-                $scope.setBook = function (inf) {
+                $scope.setAttri = function (flightId, destination, currentUser) {
+                    booking.flightID = flightId;
+                    booking.to = destination;
+                    booking.ReserveeName = currentUser;
+                };
+                $scope.setBook = function () {
                     booking = {
-                        'from_': '' + $scope.from,
-                        'to_': '' + +$scope.to,
-//                        'from': '' + $scope.from,
-//                        'to': '' + +$scope.to,
+                        'from': '' + $scope.from,
+                        'to': '' + $scope.to,
                         'flightID': $scope.flightToUse,
                         'ReserveeName': $scope.username,
                         'ReservePhone': '',
                         'ReserveeEmail': '',
                         'numberOfSeats': $scope.seats,
-                        'URL': "",
                         'passengers': []
                     };
-
                     passenger = {
                         'firstName': '',
                         'lastName': ''
                     };
-
+                    // Loop through numberOfSeats to generate passengers
                     for (var i = 0; i < booking.numberOfSeats; i++) {
                         booking.passengers.push(Object.create(passenger));
-                    }
-                    ;
+                    };
                     InfoFactory.setBooking(booking);
                 };
-        }]);
+    }]);

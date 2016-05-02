@@ -34,7 +34,10 @@
         <uib-accordion>
             <uib-accordion-group ng-repeat="unit in output.flights" >
                 <uib-accordion-heading>
-                    {{output.airline}} {{unit.flightNumber}} - Price: {{unit.totalPrice}}
+                    {{output.airline}} {{unit.flightNumber}} - Price: {{unit.totalPrice}} 
+                    <i class="pull-right glyphicon" ng-class="
+                        {'glyphicon-chevron-down': status.open, 
+                        'glyphicon-chevron-right': !status.open}"></i>
                 </uib-accordion-heading>
                 <ul>
                     <li><b>flightID: </b> {{unit.flightID}} </li>
@@ -45,14 +48,13 @@
                     <li><b>From:</b> {{unit.origin}} </li>
                     <li><b>Destination:</b> {{unit.destination}} </li>
                     <li><b>Flight Number:</b> {{unit.flightNumber}} </li>
-                    <li>
-                            <a href="#/view3" ng-click="
-                                select(unit);
+                    <pre>
+                            <a href="#/view3" type="button" class="btn btn-lg" ng-click="
                                         setSeats(unit.numberOfSeats);
                                         setBook();
-                                        removeTask(unit.flightID, unit.destination , username);
-                                        "  >book</a>
-                        </li>
+                                        setAttri(unit.flightID, unit.destination, username);
+                                        "  > <h1>Book now !</h1></a></pre>
+                    
 
 
                     <!--                <a href="#/view3" ng-click="startBooking(
