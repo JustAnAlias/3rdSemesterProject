@@ -15,13 +15,13 @@
         </button>
 
         <input type="text" id="datetimepicker1" disabled="true"
-                       uib-datepicker-popup="yyyy/MM/dd" 
-                       ng-model="date" 
-                       is-open="status.opened" 
-                       min-date="minDate" 
-                       max-date="maxDate" 
-                       datepicker-options="dateOptions"
-                       ng-required="true" close-text="Close" />
+               uib-datepicker-popup="yyyy/MM/dd" 
+               ng-model="date" 
+               is-open="status.opened" 
+               min-date="minDate" 
+               max-date="maxDate" 
+               datepicker-options="dateOptions"
+               ng-required="true" close-text="Close" />
 
         Seats: <input size="1" type="text" name="number" ng-model="number" value="2" required>
         <button type="submit" class="btn btn-success">Search</button>
@@ -31,26 +31,45 @@
     </form>
     <br>
     <div style="width: 25em ; border-left: 12em">
-    <uib-accordion>
-        <uib-accordion-group ng-repeat="unit in output.flights" >
-            <uib-accordion-heading>
-                {{output.airline}} {{unit.flightNumber}} - Price: {{unit.totalPrice}}
-            </uib-accordion-heading>
-            <ul>
-                <li><b>flightID: </b> {{unit.flightID}} </li>
-                <li><b>Seats:</b> {{unit.numberOfSeats}} </li>
-                <li><b>Date:</b> {{unit.date}} </li>
-                <li><b>PRICE:</b> {{unit.totalPrice}} </li>
-                <li><b>Traveltime:</b> {{unit.traveltime}} </li>
-                <li><b>From:</b> {{unit.origin}} </li>
-                <li><b>Destination:</b> {{unit.destination}} </li>
-                <li><b>Flight Number:</b> {{unit.flightNumber}} </li>
-                    
-               
+        <uib-accordion>
+            <uib-accordion-group ng-repeat="unit in output.flights" >
+                <uib-accordion-heading>
+                    {{output.airline}} {{unit.flightNumber}} - Price: {{unit.totalPrice}}
+                </uib-accordion-heading>
+                <ul>
+                    <li><b>flightID: </b> {{unit.flightID}} </li>
+                    <li><b>Seats:</b> {{unit.numberOfSeats}} </li>
+                    <li><b>Date:</b> {{unit.date}} </li>
+                    <li><b>PRICE:</b> {{unit.totalPrice}} </li>
+                    <li><b>Traveltime:</b> {{unit.traveltime}} </li>
+                    <li><b>From:</b> {{unit.origin}} </li>
+                    <li><b>Destination:</b> {{unit.destination}} </li>
+                    <li><b>Flight Number:</b> {{unit.flightNumber}} </li>
+                    {{unit.rootURL == "http://angularjs.com"}}
+                    <li>
+                            <a href="#/view3" ng-click="
+                                select(unit);
+                                        setSeats(unit.numberOfSeats);
+                                        setBook();
+                                        removeTask(unit.flightID, unit.destination , unit.rootURL, username);
+                                        "  >book</a>
+                        </li>
+
+
+                    <!--                <a href="#/view3" ng-click="startBooking(
+                                                unit.flightID, 
+                                                output.airline, 
+                                                unit.numberOfSeats, 
+                                                unit.origin, 
+                                                unit.destination)">
+                                    BOOK</a>-->
+
+
+
                 </ul>
-        </uib-accordion-group>
-    </uib-accordion>
-</div>
+            </uib-accordion-group>
+        </uib-accordion>
+    </div>
 
 
 </div>
