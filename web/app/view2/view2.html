@@ -30,44 +30,73 @@
 
     </form>
     <br>
-    <div style="width: 25em ; border-left: 12em">
+    <div >
         <uib-accordion>
-            <uib-accordion-group ng-repeat="unit in output.flights" >
+            <uib-accordion-group style="width: fit-content; border-left: 12em" ng-repeat="unit in output.flights| orderBy: 'totalPrice'" >
                 <uib-accordion-heading>
                     {{output.airline}} {{unit.flightNumber}} - Price: {{unit.totalPrice}} 
                     <i class="pull-right glyphicon" ng-class="
-                        {'glyphicon-chevron-down': status.open, 
-                        'glyphicon-chevron-right': !status.open}"></i>
+                        {'glyphicon - chevron-down': status.open, 
+                        'glyphicon - chevron-right': !status.open}"></i>
                 </uib-accordion-heading>
-                <ul>
-                    <li><b>flightID: </b> {{unit.flightID}} </li>
-                    <li><b>Seats:</b> {{unit.numberOfSeats}} </li>
-                    <li><b>Date:</b> {{unit.date}} </li>
-                    <li><b>PRICE:</b> {{unit.totalPrice}} </li>
-                    <li><b>Traveltime:</b> {{unit.traveltime}} </li>
-                    <li><b>From:</b> {{unit.origin}} </li>
-                    <li><b>Destination:</b> {{unit.destination}} </li>
-                    <li><b>Flight Number:</b> {{unit.flightNumber}} </li>
-                    <pre>
-                            <a href="#/view3" type="button" class="btn btn-lg" ng-click="
-                                        setSeats(unit.numberOfSeats);
-                                        setBook();
-                                        setAttri(unit.flightID, unit.destination, username);
-                                        "  > <h1>Book now !</h1></a></pre>
-                    
-
-
-                    <!--                <a href="#/view3" ng-click="startBooking(
-                                                unit.flightID, 
-                                                output.airline, 
-                                                unit.numberOfSeats, 
-                                                unit.origin, 
-                                                unit.destination)">
-                                    BOOK</a>-->
-
-
-
-                </ul>
+                <!--                <ul>
+                                    <li><b>flightID: </b> {{unit.flightID}} </li>
+                                    <li><b>Seats:</b> {{unit.numberOfSeats}} </li>
+                                    <li><b>Date:</b> {{unit.date}} </li>
+                                    <li><b>PRICE:</b> {{unit.totalPrice}} </li>
+                                    <li><b>Traveltime:</b> {{unit.traveltime}} </li>
+                                    <li><b>From:</b> {{unit.origin}} </li>
+                                    <li><b>Destination:</b> {{unit.destination}} </li>
+                                    <li><b>Flight Number:</b> {{unit.flightNumber}} </li>
+                                    <pre>
+                                            <a href="#/view3" type="button" class="btn btn-lg" ng-click="
+                                                        setSeats(unit.numberOfSeats);
+                                                        setBook();
+                                                        setAttri(unit.flightID, unit.destination, username);
+                                                        "  > <h1>Book now !</h1></a></pre>
+                                    
+                
+                
+                                                    <a href="#/view3" ng-click="startBooking(
+                                                                unit.flightID, 
+                                                                output.airline, 
+                                                                unit.numberOfSeats, 
+                                                                unit.origin, 
+                                                                unit.destination)">
+                                                    BOOK</a>
+                
+                
+                
+                                </ul>-->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th><b>flightID:</b> </th>
+                            <th><b>Seats:</b></th>
+                            <th><b>Date:</b> </th>
+                            <th><b>PRICE:</b></th>
+                            <th><b>Traveltime</b></th>
+                            <th><b>From:</b> </th>
+                            <th><b>Destination</b></th>
+                            <th><b>Flight Number</b></th>
+                            <th><b>Book</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>    
+                            <td>{{unit.flightID}}</td>
+                            <td>{{unit.numberOfSeats}}</td>
+                            <td>{{unit.date.substring(0, 10)}} </td>
+                            <td>{{unit.totalPrice}}</td>
+                            <td>{{unit.traveltime}}</td>
+                            <td>{{unit.origin}}</td>
+                            <td>{{unit.destination}}</td>
+                            <td>{{unit.flightNumber}}</td>
+                            <td>
+                                            <a href="#/view3" type="button" class="btn-success" ng-click="setSeats(unit.numberOfSeats);setBook();setAttri(unit.flightID, unit.destination, username);"> Book now !</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </uib-accordion-group>
         </uib-accordion>
     </div>
