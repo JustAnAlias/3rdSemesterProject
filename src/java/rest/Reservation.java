@@ -44,6 +44,7 @@ public class Reservation {
         ReservationRequestEntity rre = gson.fromJson(json, ReservationRequestEntity.class);
         System.out.println("RRE name: " + rre.getReserveeName());
         String responseString = rf.processRequest(rre);
+        if(responseString == null) return Response.status(Response.Status.NOT_FOUND).type(MediaType.APPLICATION_JSON).entity("OOOOPPSSSS sorry went wrong xD :P").build();
         return Response.status(Response.Status.OK).type(MediaType.APPLICATION_JSON).entity(responseString).build();
     }
 

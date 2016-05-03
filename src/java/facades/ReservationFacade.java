@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entity.ForwardReservationRequest;
 import entity.ReservationRequestEntity;
+import entity.ReservationResponseEntity;
 import exceptions.CouldNotAddEntityException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -16,6 +17,14 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -29,12 +38,14 @@ public class ReservationFacade {
 
     Gson gson;
     AirlineFacade af;
+    ExecutorService executor;
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
 
     public ReservationFacade() {
         af = new AirlineFacade();
         gson = new GsonBuilder().setPrettyPrinting().create();
+        executor = Executors.newFixedThreadPool(4);
     }
 
     public <T> void addEntity(T ie) throws CouldNotAddEntityException {
@@ -50,61 +61,32 @@ public class ReservationFacade {
         }
     }
 
+
     public String processRequest(ReservationRequestEntity rre) {
+        Future<ReservationResponseEntity> fut = executor.submit(new ReservationCaller(rre));
+        ReservationResponseEntity res = null;
 
-         System.out.println("RRE name 2 : " + rre.getReserveeName());
-        String airlineName = rre.getAirlineName();
-        String response = "";
-        System.out.println("airlineName: " + airlineName);
-        String baseUrl = af.getAirlineByName(airlineName);
-        System.out.println("baseUrl: " + baseUrl);
-        String json = makeNewJson(rre);
-        System.out.println("Trying to get reservation.. " + airlineName + " BaseURL: " + baseUrl);
-        System.out.println("JSON: " + json);
         try {
-            String myurl = baseUrl + "/api/reservation/" + rre.getFlightId();
-            HttpURLConnection con = (HttpURLConnection) new URL(baseUrl).openConnection();
-            con.setRequestProperty("Content-Type", "application/json;");
-            con.setRequestProperty("Accept", "application/json");
-            con.setRequestProperty("Method", "POST");
-            con.setDoOutput(true);
-            PrintWriter pw = new PrintWriter(con.getOutputStream());
-            try (OutputStream os = con.getOutputStream()) {
-                os.write(json.getBytes("UTF-8"));
-            }
-            int HttpResult = con.getResponseCode();
-            InputStreamReader is = HttpResult < 400 ? new InputStreamReader(con.getInputStream(), "utf-8")
-                    : new InputStreamReader(con.getErrorStream(), "utf-8");
-            Scanner responseReader = new Scanner(is);
-
-            while (responseReader.hasNext()) {
-                response += responseReader.nextLine() + System.getProperty("line.separator");
-            }
-            System.out.println(response);
-            System.out.println(con.getResponseCode());
-            System.out.println(con.getResponseMessage());
-        } catch (Exception e) {
-
-        } finally {
-            try {
-                addEntity(rre);
-            } catch (Exception e) {
-
-            }
+            res = fut.get(10, TimeUnit.SECONDS);
+            addEntity(rre);
+            
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ReservationFacade.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(ReservationFacade.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TimeoutException ex) {
+            Logger.getLogger(ReservationFacade.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CouldNotAddEntityException ex) {
+                Logger.getLogger(ReservationFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+        //    group.goOutsideToGetFreshAir();
         }
 
-        return response;
+        String result = gson.toJson(res, ReservationResponseEntity.class);
+        
+        return result;
+        
     }
 
-    public String makeNewJson(ReservationRequestEntity rre) {
-        ForwardReservationRequest frr = new ForwardReservationRequest();
-        frr.setFlightId(rre.getFlightId());
-        frr.setNumberOfSeats(rre.getNumberOfSeats());
-        frr.setReserveeEmail(rre.getReserveeEmail());
-        frr.setReserveeName(rre.getReserveeName());
-        frr.setPassengers(rre.getPassengers());
-        frr.setReserveePhone(rre.getReserveePhone());
-        return gson.toJson(frr);
-
-    }
 }
