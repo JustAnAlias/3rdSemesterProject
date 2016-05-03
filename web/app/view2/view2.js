@@ -2,20 +2,20 @@
 
 angular.module('myApp.view2', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/view2', {
-        templateUrl: 'app/view2/view2.html',
-        controller: 'View2Ctrl'
-    });
-}])
+        .config(['$routeProvider', function ($routeProvider) {
+                $routeProvider.when('/view2', {
+                    templateUrl: 'app/view2/view2.html',
+                    controller: 'View2Ctrl'
+                });
+            }])
 
-.controller('View2Ctrl', ["InfoFactory", "InfoService", "$scope", "$http", function(InfoFactory, InfoService, $scope, $http) {
-                 // Calendar
+        .controller('View2Ctrl', ["InfoFactory", "InfoService", "$scope", "$http", function (InfoFactory, InfoService, $scope, $http) {
+                // Calendar
                 $scope.today = function () {
                     $scope.date = new Date();
                 };
-
                 $scope.today(); // Presets date to todays date
+
                 $scope.clear = function () {
                     $scope.date = null;
                 }; // date clear button
@@ -54,6 +54,40 @@ angular.module('myApp.view2', ['ngRoute'])
                     }).error(function (data, status, headers, config) {
                     })
                 };
-                
-                
-            }])
+
+                // Booking
+                // Variables
+                var booking = {};
+                var passenger = {};
+
+                // Set variables
+                $scope.setSeats = function (seats){
+                    $scope.seats = seats;
+                };
+                $scope.setAttri = function (flightId, destination, currentUser) {
+                    booking.flightID = flightId;
+                    booking.to = destination;
+                    booking.ReserveeName = currentUser;
+                };
+                $scope.setBook = function () {
+                    booking = {
+                        'from': '' + $scope.from,
+                        'to': '' + $scope.to,
+                        'flightID': $scope.flightToUse,
+                        'ReserveeName': $scope.username,
+                        'ReservePhone': '',
+                        'ReserveeEmail': '',
+                        'numberOfSeats': $scope.seats,
+                        'passengers': []
+                    };
+                    passenger = {
+                        'firstName': '',
+                        'lastName': ''
+                    };
+                    // Loop through numberOfSeats to generate passengers
+                    for (var i = 0; i < booking.numberOfSeats; i++) {
+                        booking.passengers.push(Object.create(passenger));
+                    };
+                    InfoFactory.setBooking(booking);
+                };
+    }]);

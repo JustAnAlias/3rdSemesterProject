@@ -1,5 +1,93 @@
-<h3>This is the partial for view 3.</h3>
-<div>
-  <p>Data from server (Admins only) <b style="color: darkblue">{{data.message}}</b></p>
-  <p>Server Time: <b style="color: darkblue">{{data.serverTime}}</b></p>
+<div  ng-controller="View3Ctrl">          
+    <form action="" method="post">  
+        <div class="row rs_row_header_info">               
+            <div class="col-md-1 col-sm-1 col-xs-12">
+                <div class="form-group">
+                    <label> Seats </label>
+                </div>
+            </div>
+            <div class="col-md-1 col-sm-1 col-xs-12">
+                <div class="form-group">
+                    <label> From </label>
+                </div>
+            </div>
+            <div class="col-md-1 col-sm-1 col-xs-12">
+                <div class="form-group">
+                    <label> To </label>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <div class="form-group">
+                    <label> Username </label>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <div class="form-group">
+                    <label> Phone </label>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <div class="form-group">
+                    <label> E-mail </label>
+                </div>
+            </div> 
+        </div>
+        <div class="row rs_row_header_info">               
+            <div class="col-md-1 col-sm-1 col-xs-12">
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="{{ book.numberOfSeats}}" disabled="true" />
+                </div>
+            </div>
+            <div class="col-md-1 col-sm-1 col-xs-12">
+                <div class="form-group">
+                    <input type="number" class="form-control"  placeholder="{{ book.from | uppercase }}" disabled="true"/>
+                </div>
+            </div>
+            <div class="col-md-1 col-sm-1 col-xs-12">
+                <div class="form-group">
+                    <input type="number" class="form-control"  placeholder="{{ book.to | uppercase }}" disabled="true"/>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <div class="form-group" ng-show="!isAuthenticated">
+                    <input type="text" class="form-control" placeholder="Reservee' Nam" ng-model="username" />
+                </div>
+                <div class="form-group" ng-show="isAuthenticated">
+                    <input type="text" class="form-control" placeholder="Reservee' Nam" ng-model="username.substring(0, 1).toUpperCase() + username.substring(1, username.length)" disabled="true" />
+                </div>
+
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Reservee Phone" ng-model="book.ReservePhone" />
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Reservee Email" ng-model="book.ReserveeEmail" />
+                </div>
+            </div> 
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-inline" ng-repeat="user in book.passengers track by $index" >
+                    <div class="form-group">
+                        <br><pre>Passenger {{$index + 1}} </pre>
+                        <label class="sr-only">Firstname</label>
+                        <input type="text" class="form-control" ng-model="user.firstName" placeholder="Firstname" required>
+                        <label class="sr-only">Lastname</label>
+                        <input type="text" class="form-control" ng-model="user.lastName" placeholder="Lastname" required>
+                    </div>
+                </div> 
+            </div>
+            <div class="col-md-4"><br>
+                <pre><a href="#/view4" type="button" class="btn btn-lg" ng-click="booking()"> <h1>Book now !</h1></a></pre>
+            </div>
+        </div>
+
+    </form>
+
+
+
 </div>
