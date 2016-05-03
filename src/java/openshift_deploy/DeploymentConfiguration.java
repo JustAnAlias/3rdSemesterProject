@@ -59,9 +59,7 @@ public class DeploymentConfiguration implements ServletContextListener {
       admin.AddRole(adminRole);
       both.AddRole(userRole);
       both.AddRole(adminRole);
-      AirlineEntity ae = new AirlineEntity();
-      ae.setUrl("http://angularairline-plaul.rhcloud.com");
-      ae.setActive(true);
+      AirlineEntity ae = new AirlineEntity("http://angularairline-plaul.rhcloud.com", "AngularJS Airline", true);
 
       try {
         em.getTransaction().begin();

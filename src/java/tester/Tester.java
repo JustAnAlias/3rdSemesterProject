@@ -6,6 +6,7 @@
 package tester;
 
 import entity.AirlineEntity;
+import exceptions.CouldNotAddEntityException;
 import facades.AirlineFacade;
 import facades.MetaFacade;
 
@@ -14,22 +15,24 @@ import facades.MetaFacade;
  * @author Eske Wolff
  */
 public class Tester {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CouldNotAddEntityException {
         
         AirlineFacade af = new AirlineFacade();
         MetaFacade mf = new MetaFacade();
-//        AirlineEntity ae = new AirlineEntity();
+        AirlineEntity ae = new AirlineEntity("www.hej.dk", "asdad", true);
 //        ae.setUrl("http://angularairline-plaul.rhcloud.com");
 //        ae.setActive(true);
-//        af.addEntity(ae);
+        af.addEntity(ae);
         
         //Add http://angularairline-plaul.rhcloud.com to database from Postman and it should work.
-        try{
-        System.out.println(mf.getFlights("CPH", "STN", "2016-01-01T00:00:00.000Z", 2));
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+//        try{
+//        System.out.println(mf.getFlights("CPH", "STN", "2016-01-01T00:00:00.000Z", 2));
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//        }
+        
+//        af.addEntity(ae);
     }
     
 }

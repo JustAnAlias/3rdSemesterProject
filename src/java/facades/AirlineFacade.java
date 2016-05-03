@@ -51,7 +51,7 @@ public class AirlineFacade {
     }
 
     public List<AirlineEntity> getActiveAirlines() {
-          EntityManager em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager();
         List<AirlineEntity> result = new ArrayList();
         try {
             Query q = em.createQuery("SELECT a FROM AirlineEntity a WHERE a.active =:true", AirlineEntity.class);
@@ -62,20 +62,17 @@ public class AirlineFacade {
         }
         return result;
     }
-    
-    public String getAirlineByName(String name){
-          EntityManager em = emf.createEntityManager();
+
+    public String getAirlineByName(String name) {
+        EntityManager em = emf.createEntityManager();
         AirlineEntity result = null;
         try {
-                       Query q = em.createQuery("SELECT a FROM AirlineEntity a WHERE a. =:name", AirlineEntity.class);
+            Query q = em.createQuery("SELECT a FROM AirlineEntity a WHERE a.airlineName =:name", AirlineEntity.class);
             q.setParameter("name", name);
-            result =   (AirlineEntity) q.getSingleResult();
-        }
-        catch (Exception e){
+            result = (AirlineEntity) q.getSingleResult();
+        } catch (Exception e) {
             // do something
-        }
-        
-        finally {
+        } finally {
             em.close();
         }
         return result.getUrl();

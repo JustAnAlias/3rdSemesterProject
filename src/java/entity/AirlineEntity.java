@@ -20,7 +20,18 @@ public class AirlineEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String url;
+    private String airlineName;
     private boolean active;
+
+    public AirlineEntity() {
+    }
+
+    public AirlineEntity(String url, String airlineName, boolean active) {
+        this.url = url;
+        this.airlineName = airlineName;
+        this.active = active;
+    }
+    
 
     public String getUrl() {
         return url;
@@ -37,10 +48,19 @@ public class AirlineEntity implements Serializable {
     public void setActive(boolean active) {
         this.active = active;
     }
+    
 
     @Override
     public String toString() {
         return "entity.AirlineEntity[ url=" + url + ", active: " + active + " ]" ;
+    }
+
+    public String getAirlineName() {
+        return airlineName;
+    }
+
+    public void setAirlineName(String airlineName) {
+        this.airlineName = airlineName;
     }
     
 }

@@ -58,11 +58,10 @@ public class ReservationFacade {
         System.out.println("airlineName: " + airlineName);
         String baseUrl = af.getAirlineByName(airlineName);
         System.out.println("baseUrl: " + baseUrl);
-        String json = makeJsonShit(rre);
+        String json = makeNewJson(rre);
         System.out.println("Trying to get reservation.. " + airlineName + " BaseURL: " + baseUrl);
         System.out.println("JSON: " + json);
         try {
-
             String myurl = baseUrl + "/api/reservation/" + rre.getFlightId();
             HttpURLConnection con = (HttpURLConnection) new URL(baseUrl).openConnection();
             con.setRequestProperty("Content-Type", "application/json;");
@@ -97,7 +96,7 @@ public class ReservationFacade {
         return response;
     }
 
-    public String makeJsonShit(ReservationRequestEntity rre) {
+    public String makeNewJson(ReservationRequestEntity rre) {
         ForwardReservationRequest frr = new ForwardReservationRequest();
         frr.setFlightId(rre.getFlightId());
         frr.setNumberOfSeats(rre.getNumberOfSeats());
