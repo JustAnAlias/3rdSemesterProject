@@ -30,23 +30,35 @@ public class Airline {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAirlines() {
-        return gson.toJson(af.getActiveAirlines());
+    public Response getAirlines() {
+        try{
+            return Response.status(Response.Status.OK).entity(gson.toJson(af.getActiveAirlines())).build();
+        }
+        catch (Exception e){
+            return Response.status(Response.Status.SERVICE_UNAVAILABLE).build();
+        }
+        
 
     }
     
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllAirlines() {
-        return gson.toJson(af.getAirlines());
+    public Response getAllAirlines() {
+        try{
+            return Response.status(Response.Status.OK).entity(gson.toJson(af.getAirlines())).build();
+        }
+        catch (Exception e){
+            return Response.status(Response.Status.SERVICE_UNAVAILABLE).build();
+        }
+        
 
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addAirline(String json) throws CouldNotAddEntityException {
-
+        
         AirlineEntity ae = gson.fromJson(json, AirlineEntity.class);
         af.addEntity(ae);
 

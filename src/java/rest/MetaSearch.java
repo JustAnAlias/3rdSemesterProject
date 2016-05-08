@@ -32,13 +32,13 @@ public class MetaSearch {
     @GET
     @Path("/{from}/{date}/{tickets}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getFlightsFrom(@PathParam("from") String from, @PathParam("date") String date,
+    public Response getFlightsFrom(@PathParam("from") String from, @PathParam("date") String date,
             @PathParam("tickets") int tickets) {
         try{
-        return mf.getFlights(from, null, date, tickets);
+            return Response.status(Response.Status.OK).entity(gson.toJson(mf.getFlights(from, null, date, tickets))).build();
         }
-        catch(Exception e){
-            return new Exception("something went wrong").toString();
+        catch (Exception e){
+            return Response.status(Response.Status.SERVICE_UNAVAILABLE).build();
         }
     }
     
