@@ -46,6 +46,18 @@ public class Reservation {
         }
     }
 
+    @GET
+    @Path("/{reserveeName}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllReservationsByName(@PathParam("reserveeName")String reserveeName) {
+        try{
+            return Response.status(Response.Status.OK).entity(gson.toJson(rf.getReservationsByName(reserveeName))).build();
+        }
+        catch (Exception e){
+            return Response.status(Response.Status.SERVICE_UNAVAILABLE).build();
+        }
+    }
+
     
     
     @POST

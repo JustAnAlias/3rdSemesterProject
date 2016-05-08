@@ -104,5 +104,19 @@ public class ReservationFacade {
         return result;
 
     }
+    
+    public List<ReservationRequestEntity> getReservationsByName(String name) {
+        EntityManager em = emf.createEntityManager();
+        List<ReservationRequestEntity> result = new ArrayList();
+        try {
+            Query q = em.createQuery("SELECT a FROM ReservationRequestEntity a WHERE a.reserveeName =:name", ReservationRequestEntity.class);
+            q.setParameter("name", name);
+            result = q.getResultList();
+        } finally {
+            em.close();
+        }
+        return result;
+    }
+
 
 }
