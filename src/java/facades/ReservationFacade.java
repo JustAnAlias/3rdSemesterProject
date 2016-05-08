@@ -16,6 +16,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -28,6 +30,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import openshift_deploy.DeploymentConfiguration;
 
 /**
@@ -87,6 +90,19 @@ public class ReservationFacade {
         
         return result;
         
+    }
+
+    public List<ReservationRequestEntity> getAllReservations() {
+        EntityManager em = emf.createEntityManager();
+        List<ReservationRequestEntity> result = new ArrayList();
+        try {
+            Query q = em.createQuery("SELECT a FROM ReservationRequestEntity a", ReservationRequestEntity.class);
+            result = q.getResultList();
+        } finally {
+            em.close();
+        }
+        return result;
+
     }
 
 }

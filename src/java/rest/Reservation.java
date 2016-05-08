@@ -34,6 +34,19 @@ public class Reservation {
         rf = new ReservationFacade();
     }
 
+    @GET
+    @Path("/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllReservations() {
+        try{
+            return Response.status(Response.Status.OK).entity(gson.toJson(rf.getAllReservations())).build();
+        }
+        catch (Exception e){
+            return Response.status(Response.Status.SERVICE_UNAVAILABLE).build();
+        }
+    }
+
+    
     
     @POST
     @Path("{flightId}")
