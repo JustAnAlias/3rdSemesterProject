@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,6 +27,7 @@ public class ReservationResponseEntity implements Serializable {
     private int flightTime;
     private int numberOfSeats;
     private String reserveeName;
+    @OneToMany
     private List<Passenger> passengers;
 
     public String getFlightNumber() {
