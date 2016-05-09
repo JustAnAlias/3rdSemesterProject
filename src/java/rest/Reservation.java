@@ -61,7 +61,7 @@ public class Reservation {
     
     
     @POST
-    @Path("{flightId}")
+    @Path("/{flightId}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addAirline(@PathParam("flightId")String flightId, String json) throws FlightException {
 
