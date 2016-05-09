@@ -14,9 +14,9 @@ import java.util.List;
  */
 public class ForwardReservationRequest implements Serializable {
 
-    private String flightId;
+    private String flightID;
     private String reserveeName;
-    private String reserveePhone;
+    private String reservePhone;
     private String reserveeEmail;
     private int numberOfSeats;
     private List<Passenger> passengers;
@@ -29,12 +29,12 @@ public class ForwardReservationRequest implements Serializable {
         this.reserveeName = reserveeName;
     }
 
-    public String getReserveePhone() {
-        return reserveePhone;
+    public String getReservePhone() {
+        return reservePhone;
     }
 
-    public void setReserveePhone(String reserveePhone) {
-        this.reserveePhone = reserveePhone;
+    public void setReservePhone(String reservePhone) {
+        this.reservePhone = reservePhone;
     }
 
     public String getReserveeEmail() {
@@ -45,12 +45,12 @@ public class ForwardReservationRequest implements Serializable {
         this.reserveeEmail = reserveeEmail;
     }
 
-    public String getFlightId() {
-        return flightId;
+    public String getFlightID() {
+        return flightID;
     }
 
-    public void setFlightId(String flightId) {
-        this.flightId = flightId;
+    public void setFlightID(String flightID) {
+        this.flightID = flightID;
     }
 
     public int getNumberOfSeats() {

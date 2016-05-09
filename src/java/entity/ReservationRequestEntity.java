@@ -25,7 +25,7 @@ public class ReservationRequestEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String airlineName;
-    private String flightId;
+    private String flightID;
     private int numberOfSeats;
     private String reservePhone;
     private String reserveeEmail;
@@ -39,12 +39,12 @@ public class ReservationRequestEntity implements Serializable {
         return "entity.ReservationRequestEntity[ id=" + " ]";
     }
 
-    public String getFlightId() {
-        return flightId;
+    public String getFlightID() {
+        return flightID;
     }
 
-    public void setFlightId(String flightId) {
-        this.flightId = flightId;
+    public void setFlightID(String flightID) {
+        this.flightID = flightID;
     }
 
     public int getNumberOfSeats() {

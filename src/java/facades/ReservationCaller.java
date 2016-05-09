@@ -85,12 +85,12 @@ public class ReservationCaller implements Callable {
 
     public String makeNewJson(ReservationRequestEntity rre) {
         ForwardReservationRequest frr = new ForwardReservationRequest();
-        frr.setFlightId(rre.getFlightId());
+        frr.setFlightID(rre.getFlightID());
         frr.setNumberOfSeats(rre.getNumberOfSeats());
         frr.setReserveeEmail(rre.getReserveeEmail());
         frr.setReserveeName(rre.getReserveeName());
         frr.setPassengers(rre.getPassengers());
-        frr.setReserveePhone(rre.getReservePhone());
+        frr.setReservePhone(rre.getReservePhone());
         return gson.toJson(frr);
 
     }

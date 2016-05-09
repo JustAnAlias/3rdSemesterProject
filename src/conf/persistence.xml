@@ -5,6 +5,8 @@
     <class>entity.Role</class>
     <class>entity.User</class>
     <class>entity.AirlineEntity</class>
+    <class>entity.ReservationRequestEntity</class>
+    <class>entity.ReservationResponseEntity</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull"/>
@@ -21,6 +23,8 @@
     <class>entity.User</class>
     <class>entity.Role</class>
     <class>entity.AirlineEntity</class>
+    <class>entity.ReservationResponseEntity</class>
+    <class>entity.ReservationRequestEntity</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
