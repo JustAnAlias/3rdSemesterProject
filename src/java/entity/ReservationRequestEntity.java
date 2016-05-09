@@ -7,7 +7,6 @@ package entity;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,20 +23,56 @@ import javax.persistence.OneToMany;
 public class ReservationRequestEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private String flightID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String airlineName;
+    private Long id;
+    private String flightId;
     private int numberOfSeats;
-    private String reserveeName;
-    private String reservePhone;
+    private String reserveePhone;
     private String reserveeEmail;
+    private String reserveeName;
     @OneToMany
     private List<Passenger> passengers;
 
-    public String getFlightID() {
-        return flightID;
+    public Long getId() {
+        return id;
     }
 
-    public void setFlightID(String flightID) {
-        this.flightID = flightID;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ReservationRequestEntity)) {
+            return false;
+        }
+        ReservationRequestEntity other = (ReservationRequestEntity) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entity.ReservationRequestEntity[ id=" + id + " ]";
+    }
+
+    public String getFlightId() {
+        return flightId;
+    }
+
+    public void setFlightId(String flightId) {
+        this.flightId = flightId;
     }
 
     public int getNumberOfSeats() {
@@ -48,20 +83,12 @@ public class ReservationRequestEntity implements Serializable {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public String getReserveeName() {
-        return reserveeName;
-    }
-
-    public void setReserveeName(String reserveeName) {
-        this.reserveeName = reserveeName;
-    }
-
     public String getReserveePhone() {
-        return reservePhone;
+        return reserveePhone;
     }
 
     public void setReserveePhone(String reserveePhone) {
-        this.reservePhone = reserveePhone;
+        this.reserveePhone = reserveePhone;
     }
 
     public String getReserveeEmail() {
@@ -80,48 +107,20 @@ public class ReservationRequestEntity implements Serializable {
         this.passengers = passengers;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.flightID);
-        hash = 97 * hash + this.numberOfSeats;
-        hash = 97 * hash + Objects.hashCode(this.reserveeName);
-        hash = 97 * hash + Objects.hashCode(this.reservePhone);
-        hash = 97 * hash + Objects.hashCode(this.reserveeEmail);
-        hash = 97 * hash + Objects.hashCode(this.passengers);
-        return hash;
+    public String getAirlineName() {
+        return airlineName;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ReservationRequestEntity other = (ReservationRequestEntity) obj;
-        if (!Objects.equals(this.flightID, other.flightID)) {
-            return false;
-        }
-        if (this.numberOfSeats != other.numberOfSeats) {
-            return false;
-        }
-        if (!Objects.equals(this.reserveeName, other.reserveeName)) {
-            return false;
-        }
-        if (!Objects.equals(this.reservePhone, other.reservePhone)) {
-            return false;
-        }
-        if (!Objects.equals(this.reserveeEmail, other.reserveeEmail)) {
-            return false;
-        }
-        if (!Objects.equals(this.passengers, other.passengers)) {
-            return false;
-        }
-        return true;
+    public void setAirlineName(String airlineName) {
+        this.airlineName = airlineName;
     }
 
-    
+    public String getReserveeName() {
+        return reserveeName;
+    }
+
+    public void setReserveeName(String reserveeName) {
+        this.reserveeName = reserveeName;
+    }
     
 }
