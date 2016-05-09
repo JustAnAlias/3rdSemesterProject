@@ -25,46 +25,18 @@ public class ReservationRequestEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String airlineName;
-    private Long id;
     private String flightId;
     private int numberOfSeats;
-    private String reserveePhone;
+    private String reservePhone;
     private String reserveeEmail;
     private String reserveeName;
     @OneToMany
     private List<Passenger> passengers;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ReservationRequestEntity)) {
-            return false;
-        }
-        ReservationRequestEntity other = (ReservationRequestEntity) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public String toString() {
-        return "entity.ReservationRequestEntity[ id=" + id + " ]";
+        return "entity.ReservationRequestEntity[ id=" + " ]";
     }
 
     public String getFlightId() {
@@ -83,12 +55,12 @@ public class ReservationRequestEntity implements Serializable {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public String getReserveePhone() {
-        return reserveePhone;
+    public String getReservePhone() {
+        return reservePhone;
     }
 
-    public void setReserveePhone(String reserveePhone) {
-        this.reserveePhone = reserveePhone;
+    public void setReservePhone(String reservePhone) {
+        this.reservePhone = reservePhone;
     }
 
     public String getReserveeEmail() {

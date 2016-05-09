@@ -61,11 +61,10 @@ public class Reservation {
     
     
     @POST
-    @Path("/{flightId}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addAirline(@PathParam("flightId")String flightId, String json) throws FlightException {
+    public Response addAirline(String json) throws FlightException {
 
-        System.out.println("FlightID: " + flightId + " Json: " + json);
+        System.out.println("Json: " + json);
         ReservationRequestEntity rre = gson.fromJson(json, ReservationRequestEntity.class);
         System.out.println("RRE name: " + rre.getReserveeName());
         String responseString = rf.processRequest(rre);

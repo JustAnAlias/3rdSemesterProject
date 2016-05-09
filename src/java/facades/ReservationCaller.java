@@ -47,7 +47,8 @@ public class ReservationCaller implements Callable {
         System.out.println("Trying to get reservation.. " + airlineName + " BaseURL: " + baseUrl);
         System.out.println("JSON: " + json);
         try {
-            String myurl = baseUrl + "/api/reservation/" + rre.getFlightId();
+//            String myurl = baseUrl + "/api/reservation/" + rre.getFlightId();
+            String myurl = baseUrl + "/api/flightreservation";
             HttpURLConnection con = (HttpURLConnection) new URL(myurl).openConnection();
             con.setRequestProperty("Content-Type", "application/json;");
             con.setRequestProperty("Accept", "application/json");
@@ -89,7 +90,7 @@ public class ReservationCaller implements Callable {
         frr.setReserveeEmail(rre.getReserveeEmail());
         frr.setReserveeName(rre.getReserveeName());
         frr.setPassengers(rre.getPassengers());
-        frr.setReserveePhone(rre.getReserveePhone());
+        frr.setReserveePhone(rre.getReservePhone());
         return gson.toJson(frr);
 
     }
