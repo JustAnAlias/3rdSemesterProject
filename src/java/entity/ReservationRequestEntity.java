@@ -7,10 +7,12 @@ package entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -24,13 +26,13 @@ public class ReservationRequestEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String airlineName;
     private String flightID;
+    private String airlineName;
     private int numberOfSeats;
     private String reservePhone;
     private String reserveeEmail;
     private String reserveeName;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Passenger> passengers;
 
 
