@@ -53,30 +53,32 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th><b>flightID:</b> </th>
+                            <th><b>Flight Number:</b></th>
                             <th><b>Seats:</b></th>
                             <th><b>Date:</b> </th>
-                            <th><b>Price:</b></th>
+                            <th><b>Depature:</b> </th>
                             <th><b>Traveltime:</b></th>
                             <th><b>From:</b> </th>
                             <th><b>Destination:</b></th>
-                            <th><b>Flight Number:</b></th>
+                            <th><b>Price:</b></th>
                             <th><b>Book:</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>    
-                            <td>{{unit.flightID}}</td>
+                            <td>{{unit.flightNumber}}</td>
                             <td>{{unit.numberOfSeats}}</td>
                             <td>{{unit.date.substring(0, 10)}} </td>
-                            <td>{{unit.totalPrice}}</td>
+                            <td>{{unit.date.substring(11, 16)}}</td>
                             <td>{{unit.traveltime}}</td>
                             <td>{{unit.origin}}</td>
                             <td>{{unit.destination}}</td>
-                            <td>{{unit.flightNumber}}</td>
+                            <td>{{unit.totalPrice}}</td>
                             <td>
-                                <button class="btn-success">Book</button>
-                            </td>                   
+                                <a href="#/view3" type="button" class="btn-success"
+                                     ng-click="setSeats(unit.numberOfSeats);setBook();setAttri(unit.flightID, unit.destination, username);">
+                                      Book now !</a>
+                            </td>                 
                         </tr>
                     </tbody>
                 </table>

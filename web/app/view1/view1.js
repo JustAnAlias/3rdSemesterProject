@@ -76,6 +76,42 @@ angular.module('myApp.view1', ['ngRoute'])
                     }).error(function (data, status, headers, config) {
                     })
                 };
+                
+                                // Booking
+                // Variables
+                var booking = {};
+                var passenger = {};
+
+                // Set variables
+                $scope.setSeats = function (seats){
+                    $scope.seats = seats;
+                };
+                $scope.setAttri = function (flightId, destination, currentUser) {
+                    booking.flightID = flightId;
+                    booking.to = destination;
+                    booking.ReserveeName = currentUser;
+                };
+                $scope.setBook = function () {
+                    booking = {
+                        'from': '' + $scope.from,
+                        'to': '' + $scope.to,
+                        'flightID': $scope.flightToUse,
+                        'ReserveeName': $scope.username,
+                        'ReservePhone': '',
+                        'ReserveeEmail': '',
+                        'numberOfSeats': $scope.seats,
+                        'passengers': []
+                    };
+                    passenger = {
+                        'firstName': '',
+                        'lastName': ''
+                    };
+                    // Loop through numberOfSeats to generate passengers
+                    for (var i = 0; i < booking.numberOfSeats; i++) {
+                        booking.passengers.push(Object.create(passenger));
+                    };
+                    InfoFactory.setBooking(booking);
+                };
 
 
 
