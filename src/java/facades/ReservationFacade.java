@@ -97,7 +97,7 @@ public class ReservationFacade {
         EntityManager em = emf.createEntityManager();
         List<ReservationRequestEntity> result = new ArrayList();
         try {
-            Query q = em.createQuery("SELECT a FROM ReservationRequestEntity a", ReservationRequestEntity.class);
+            Query q = em.createQuery("SELECT a FROM ReservationResponseEntity a", ReservationRequestEntity.class);
             result = q.getResultList();
         } finally {
             em.close();

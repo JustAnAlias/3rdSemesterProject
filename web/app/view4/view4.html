@@ -2,7 +2,7 @@
         <uib-accordion>
             <uib-accordion-group style="width: fit-content; border-left: 12em" ng-repeat="unit in data" >
                 <uib-accordion-heading>
-                    {{unit.reserveeName}} {{unit.numberOfSeats}} seats - {{unit.airlineName}} 
+                    <b>{{unit.flightNumber}}</b> , {{unit.origin}} - {{unit.destination}} , {{unit.date.substring(0, 10)}}
                     <i class="pull-right glyphicon" ng-class="
                         {'glyphicon - chevron-down': status.open, 
                         'glyphicon - chevron-right': !status.open}"></i>
@@ -12,6 +12,7 @@
                         <tr>
                             <th><b>Flight Number:</b> </th>
                             <th><b>Reservee Name:</b></th>
+                            <th><b>Origin: </b></th>
                             <th><b>Reserve Phone:</b> </th>
                             <th><b>Reserve Email:</b></th>
                             <th><b>Number of Passengers</b></th>
@@ -24,6 +25,7 @@
                         <tr>    
                             <td>{{unit.flightNumber}}</td>
                             <td>{{unit.reserveeName}}</td>
+                            <td>{{unit.}}</td>
                             <td>{{unit.reservePhone}} </td>
                             <td>{{unit.reserveeEmail}}</td>
                             <td>{{unit.numberOfSeats}}</td>
