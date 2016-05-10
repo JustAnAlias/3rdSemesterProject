@@ -13,24 +13,20 @@
                             <th><b>Flight Number:</b> </th>
                             <th><b>Reservee Name:</b></th>
                             <th><b>Origin: </b></th>
-                            <th><b>Reserve Phone:</b> </th>
-                            <th><b>Reserve Email:</b></th>
-                            <th><b>Number of Passengers</b></th>
-<!--                            <th><b>From:</b> </th>
-                            <th><b>Destination</b></th>-->
-                            <th><b>Passengers</b></th>
+                            <th><b>Destination: </b></th>
+                            <th><b>Date: </b></th>
+                            <th><b>Depature: </b></th>
+                            <th><b>Passengers:</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>    
                             <td>{{unit.flightNumber}}</td>
                             <td>{{unit.reserveeName}}</td>
-                            <td>{{unit.}}</td>
-                            <td>{{unit.reservePhone}} </td>
-                            <td>{{unit.reserveeEmail}}</td>
-                            <td>{{unit.numberOfSeats}}</td>
-<!--                            <td>{{unit.from}}</td>
-                            <td>{{unit.to}}</td>-->
+                            <td>{{unit.origin}}</td>
+                            <td>{{unit.destination}}</td>
+                            <td>{{unit.date.substring(0, 10)}}</td>
+                            <td>{{unit.date.substring(11, 16)}}</td>
                             <td> <div ng-repeat="p in unit.passengers" >
                                     {{p.firstName}} 
                                     {{p.lastName}}
