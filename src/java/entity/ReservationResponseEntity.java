@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 public class ReservationResponseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    private Long ID;
     private String flightNumber;
     private String origin;
     private String destination;
@@ -29,9 +30,19 @@ public class ReservationResponseEntity implements Serializable {
     private int flightTime;
     private int numberOfSeats;
     private String reserveeName;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Passenger> passengers;
 
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+
+    
+    
     public String getFlightNumber() {
         return flightNumber;
     }

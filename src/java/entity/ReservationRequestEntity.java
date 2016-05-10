@@ -26,6 +26,7 @@ public class ReservationRequestEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long ID;
     private String flightID;
     private String airlineName;
     private int numberOfSeats;
@@ -35,7 +36,16 @@ public class ReservationRequestEntity implements Serializable {
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Passenger> passengers;
 
+    public Long getID() {
+        return ID;
+    }
 
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "entity.ReservationRequestEntity[ id=" + " ]";
