@@ -64,19 +64,21 @@ angular.module('myApp.view2', ['ngRoute'])
                 $scope.setSeats = function (seats){
                     $scope.seats = seats;
                 };
-                $scope.setAttri = function (flightId, destination, currentUser) {
+                $scope.setAttri = function (airline, flightId, destination, currentUser) {
+                    booking.airlineName = airline;
                     booking.flightID = flightId;
                     booking.to = destination;
-                    booking.ReserveeName = currentUser;
+                    booking.reserveeName = currentUser;
                 };
                 $scope.setBook = function () {
                     booking = {
                         'from': '' + $scope.from,
                         'to': '' + $scope.to,
                         'flightID': $scope.flightToUse,
-                        'ReserveeName': $scope.username,
-                        'ReservePhone': '',
-                        'ReserveeEmail': '',
+                        'airlineName': '',
+                        'reserveeName': $scope.username,
+                        'reservePhone': '',
+                        'reserveeEmail': '',
                         'numberOfSeats': $scope.seats,
                         'passengers': []
                     };

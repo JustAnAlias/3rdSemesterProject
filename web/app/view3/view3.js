@@ -27,7 +27,7 @@ angular.module('myApp.view3', ['ngRoute'])
 
                     $http({
                         method: 'POST',
-                        url: '/api/reservation/' + $scope.book.flightID,
+                        url: 'api/reservation',
                         data: $scope.book
                     }).then(function successCallback(response) {
                         InfoFactory.setResponse(response);

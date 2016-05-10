@@ -1,4 +1,4 @@
-<div  ng-controller="View3Ctrl">          
+<div  ng-controller="View3Ctrl">   
     <form action="" method="post">  
         <div class="row rs_row_header_info">               
             <div class="col-md-1 col-sm-1 col-xs-12">
@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-2 col-sm-2 col-xs-12">
                 <div class="form-group" ng-show="!isAuthenticated">
-                    <input type="text" class="form-control" placeholder="Reservee' Nam" ng-model="username" />
+                    <input type="text" class="form-control" placeholder="Reservee' Nam" ng-model="book.reserveeName" />
                 </div>
                 <div class="form-group" ng-show="isAuthenticated">
                     <input type="text" class="form-control" placeholder="Reservee' Nam" ng-model="username.substring(0, 1).toUpperCase() + username.substring(1, username.length)" disabled="true" />
@@ -59,12 +59,12 @@
             </div>
             <div class="col-md-2 col-sm-2 col-xs-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Reservee Phone" ng-model="book.ReservePhone" />
+                    <input type="text" class="form-control" placeholder="Reserve Phone" ng-model="book.reservePhone" />
                 </div>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-12">
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Reservee Email" ng-model="book.ReserveeEmail" />
+                    <input type="text" class="form-control" placeholder="Reservee Email" ng-model="book.reserveeEmail" />
                 </div>
             </div> 
         </div>
@@ -82,7 +82,7 @@
                 </div> 
             </div>
             <div class="col-md-4"><br>
-                <pre><a href="#/view4" type="button" class="btn btn-lg" ng-click="booking()"> <h1>Book now !</h1></a></pre>
+                <pre><a href="#/view4" type="button" class="btn btn-lg" ng-click="booking()"> <h1>Book</h1></a></pre>
             </div>
         </div>
 
