@@ -1,7 +1,8 @@
+
         <uib-accordion>
-            <uib-accordion-group style="width: fit-content; border-left: 12em" ng-repeat="" >
+            <uib-accordion-group style="width: fit-content; border-left: 12em" ng-repeat="unit in data" >
                 <uib-accordion-heading>
-                    {{output.airlineName}} Booking ID: {{output.flightID}} - Seats: {{output.numberOfSeats}} 
+                    {{unit.reserveeName}} {{unit.numberOfSeats}} seats - {{unit.airlineName}} 
                     <i class="pull-right glyphicon" ng-class="
                         {'glyphicon - chevron-down': status.open, 
                         'glyphicon - chevron-right': !status.open}"></i>
@@ -9,30 +10,29 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th><b>flightID:</b> </th>
-                            <th><b>Seats:</b></th>
-<!--                            <th><b>Date:</b> </th>
-                            <th><b>PRICE:</b></th>
-                            <th><b>Traveltime</b></th>
-                            <th><b>From:</b> </th>
-                            <th><b>Destination</b></th>
-                            <th><b>Flight Number</b></th>
-                            <th><b>Book</b></th>-->
+                            <th><b>Flight ID:</b> </th>
+                            <th><b>Reservee Name:</b></th>
+                            <th><b>Reserve Phone:</b> </th>
+                            <th><b>Reserve Email:</b></th>
+                            <th><b>Number of Passengers</b></th>
+<!--                            <th><b>From:</b> </th>
+                            <th><b>Destination</b></th>-->
+                            <th><b>Passengers</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>    
-                            <td>{{output.flightID}}</td>
-                            <td>{{output.numberOfSeats}}</td>
-<!--                            <td>{{unit.date.substring(0, 10)}} </td>
-                            <td>{{unit.totalPrice}}</td>
-                            <td>{{unit.traveltime}}</td>
-                            <td>{{unit.origin}}</td>
-                            <td>{{unit.destination}}</td>
-                            <td>{{unit.flightNumber}}</td>-->
-                            <td>
-                                            <!--<a href="#/view3" type="button" class="btn-success" ng-click="setSeats(unit.numberOfSeats);setBook();setAttri(unit.flightID, unit.destination, username);"> Book now !</a>-->
-                            </td>
+                            <td>{{unit.flightID}}</td>
+                            <td>{{unit.reserveeName}}</td>
+                            <td>{{unit.reservePhone}} </td>
+                            <td>{{unit.reserveeEmail}}</td>
+                            <td>{{unit.numberOfSeats}}</td>
+<!--                            <td>{{unit.from}}</td>
+                            <td>{{unit.to}}</td>-->
+                            <td> <div ng-repeat="p in unit.passengers" >
+                                    {{p.firstName}} 
+                                    {{p.lastName}}
+        </div>             </td>
                         </tr>
                     </tbody>
                 </table>

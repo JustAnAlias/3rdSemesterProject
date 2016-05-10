@@ -11,19 +11,16 @@ angular.module('myApp.view4', ['ngRoute'])
 
         .controller('View4Ctrl', ["InfoFactory", "InfoService", "$scope", "$http", function (InfoFactory, InfoService, $scope, $http) {
 
-                $scope.output = {};
-                $scope.getBookings = function () {
-                    return $http({
-                        method: 'GET',
-                        url: 'api/reservation/all',
-                        skipAuthorization: true,
-                        contentType: "application/json"
-                    }).success(function (data, status, headers, config) {
-                        $scope.output = data;
-                    }).error(function (data, status, headers, config) {
-                    })
+                $scope.getBookings = function (){
+                    $http.get("api/reservation/all")
+                                .success(function (response) {
+                                    $scope.data = response;
+                                })
+                                .error(function (response) {
+                                    $scope.data = "error";
+                                });
                 };
-                
                 $scope.getBookings();
+                
 
     }]);
