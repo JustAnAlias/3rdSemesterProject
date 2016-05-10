@@ -72,6 +72,7 @@ public class ReservationFacade {
         try {
             res = fut.get(10, TimeUnit.SECONDS);
             addEntity(rre);
+            addEntity(res);
                  
         } catch (InterruptedException ex) {
             Logger.getLogger(ReservationFacade.class.getName()).log(Level.SEVERE, null, ex);
