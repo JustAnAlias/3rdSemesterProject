@@ -6,7 +6,7 @@ angular.module('myApp.login', ['ngRoute'])
                 $routeProvider.when('/login', {
                     templateUrl: 'app/login/login.html',
                     controller: 'LoginCtrl',
-                    controllerAs : 'ctrl'
+                    controllerAs: 'ctrl'
                 });
             }])
 
@@ -71,5 +71,14 @@ angular.module('myApp.login', ['ngRoute'])
                     });
                     console.log(self.user);
                 };
+
+                $scope.redirect = function (url, refresh) {
+                    if (refresh || $scope.$$phase) {
+                        $window.location.href = url;
+                    } else {
+                        $location.path(url);
+                        $scope.$apply();
+                    }
+                }
 
             }]);

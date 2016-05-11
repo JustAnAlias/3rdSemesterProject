@@ -41,7 +41,7 @@
             <input type="password" placeholder="password" required autocomplete="off" ng-model="ctrl.user.password"/>
           </div>
           
-              <a href="#/view1" > <button type="submit" class="button button-block" ng-click="ctrl.createUser()"/>Get Started</button> </a>
+             <button type="submit" class="button button-block" ng-click="ctrl.createUser(); ctrl.redirect('/view1')"/>Get Started</button> 
           
           </form>
 
