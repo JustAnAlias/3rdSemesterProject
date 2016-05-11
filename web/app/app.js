@@ -12,6 +12,7 @@ angular.module('myApp', [
   'myApp.view3',
   'myApp.view4',
   'myApp.login',
+  'myApp.AddAirline',
   'myApp.filters',
   'myApp.directives',
   'myApp.factories',
