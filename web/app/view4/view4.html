@@ -1,38 +1,42 @@
-
-        <uib-accordion>
-            <uib-accordion-group style="width: fit-content; border-left: 12em" ng-repeat="unit in data" >
-                <uib-accordion-heading>
-                    <b>{{unit.flightNumber}}</b> , {{unit.origin}} - {{unit.destination}} , {{unit.date.substring(0, 10)}}
-                    <i class="pull-right glyphicon" ng-class="
+<div ng-show="hidden" ng-model="hidden">
+    <img src="assets/img/loading.gif"> 
+</div>
+<div id="content" ng-show="shown" ng-model="shown">
+    <uib-accordion>
+        <uib-accordion-group style="width: fit-content; border-left: 12em" ng-repeat="unit in data" >
+            <uib-accordion-heading>
+                <b>{{unit.flightNumber}}</b> , {{unit.origin}} - {{unit.destination}} , {{unit.date.substring(0, 10)}}
+                <i class="pull-right glyphicon" ng-class="
                         {'glyphicon - chevron-down': status.open, 
                         'glyphicon - chevron-right': !status.open}"></i>
-                </uib-accordion-heading>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th><b>Flight Number:</b> </th>
-                            <th><b>Reservee Name:</b></th>
-                            <th><b>Origin: </b></th>
-                            <th><b>Destination: </b></th>
-                            <th><b>Date: </b></th>
-                            <th><b>Depature: </b></th>
-                            <th><b>Passengers:</b></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>    
-                            <td>{{unit.flightNumber}}</td>
-                            <td>{{unit.reserveeName}}</td>
-                            <td>{{unit.origin}}</td>
-                            <td>{{unit.destination}}</td>
-                            <td>{{unit.date.substring(0, 10)}}</td>
-                            <td>{{unit.date.substring(11, 16)}}</td>
-                            <td> <div ng-repeat="p in unit.passengers" >
-                                    {{p.firstName}} 
-                                    {{p.lastName}}
-        </div>             </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </uib-accordion-group>
-        </uib-accordion>
+            </uib-accordion-heading>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><b>Flight Number:</b> </th>
+                        <th><b>Reservee Name:</b></th>
+                        <th><b>Origin: </b></th>
+                        <th><b>Destination: </b></th>
+                        <th><b>Date: </b></th>
+                        <th><b>Depature: </b></th>
+                        <th><b>Passengers:</b></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>    
+                        <td>{{unit.flightNumber}}</td>
+                        <td>{{unit.reserveeName}}</td>
+                        <td>{{unit.origin}}</td>
+                        <td>{{unit.destination}}</td>
+                        <td>{{unit.date.substring(0, 10)}}</td>
+                        <td>{{unit.date.substring(11, 16)}}</td>
+                        <td> <div ng-repeat="p in unit.passengers" >
+                                {{p.firstName}} 
+                                {{p.lastName}}
+                            </div>             </td>
+                    </tr>
+                </tbody>
+            </table>
+        </uib-accordion-group>
+    </uib-accordion>
+</div>

@@ -11,7 +11,8 @@ angular.module('myApp.view4', ['ngRoute'])
 
         .controller('View4Ctrl', ["InfoFactory", "InfoService", "$scope", "$http", function (InfoFactory, InfoService, $scope, $http) {
 
-
+                $scope.hidden = true;
+                $scope.shown = false;
                 $scope.getBookings = function () {
                     $http.get("api/reservation/all")
                             .success(function (response) {
@@ -21,14 +22,18 @@ angular.module('myApp.view4', ['ngRoute'])
                                 $scope.data = "error";
                             });
                 };
-                
-                setTimeout(function(){
-                    $scope.$apply(function(){
+
+                setTimeout(function () {
+                    $scope.$apply(function () {
                         $scope.getBookings();
+                        $scope.hidden = false;
+                        $scope.shown = true;
+
                     });
                 }, 1500);
-                
+
                 $scope.getBookings();
 
 
             }]);
+        
