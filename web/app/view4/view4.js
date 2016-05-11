@@ -11,15 +11,24 @@ angular.module('myApp.view4', ['ngRoute'])
 
         .controller('View4Ctrl', ["InfoFactory", "InfoService", "$scope", "$http", function (InfoFactory, InfoService, $scope, $http) {
 
+
                 $scope.getBookings = function () {
                     $http.get("api/reservation/all")
                             .success(function (response) {
                                 $scope.data = response;
+                                $scope.hejMedDig();
                             })
                             .error(function (response) {
                                 $scope.data = "error";
                             });
                 };
+                
+                setTimeout(function(){
+                    $scope.$apply(function(){
+                        $scope.getBookings();
+                    });
+                }, 1500);
+                
                 $scope.getBookings();
 
 
