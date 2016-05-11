@@ -16,7 +16,6 @@ angular.module('myApp.view4', ['ngRoute'])
                     $http.get("api/reservation/all")
                             .success(function (response) {
                                 $scope.data = response;
-                                $scope.hejMedDig();
                             })
                             .error(function (response) {
                                 $scope.data = "error";
