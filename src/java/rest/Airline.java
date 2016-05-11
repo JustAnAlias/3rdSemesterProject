@@ -35,7 +35,7 @@ public class Airline {
             return Response.status(Response.Status.OK).entity(gson.toJson(af.getActiveAirlines())).build();
         }
         catch (Exception e){
-            return Response.status(Response.Status.SERVICE_UNAVAILABLE).build();
+            return Response.status(Response.Status.SERVICE_UNAVAILABLE).entity("Could not connect to database..").build();
         }
         
 

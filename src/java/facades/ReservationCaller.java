@@ -37,18 +37,20 @@ public class ReservationCaller implements Callable {
 
     @Override
     public ReservationResponseEntity call() throws Exception {
-        System.out.println("RRE name 2 : " + rre.getReserveeName());
+        String myurl = "";
         String airlineName = rre.getAirlineName();
         String response = "";
         System.out.println("airlineName: " + airlineName);
         String baseUrl = af.getAirlineByName(airlineName);
-        System.out.println("baseUrl: " + baseUrl);
+        boolean larsFuckedItUp = baseUrl.equals("http://angularairline-plaul.rhcloud.com");
+
         String json = makeNewJson(rre);
-        System.out.println("Trying to get reservation.. " + airlineName + " BaseURL: " + baseUrl);
-        System.out.println("JSON: " + json);
         try {
-//            String myurl = baseUrl + "/api/reservation/" + rre.getFlightId();
-            String myurl = baseUrl + "/api/flightreservation";
+            if (larsFuckedItUp) {
+                myurl = baseUrl + "/api/flightreservation";
+            } else {
+                myurl = baseUrl + "/api/reservation/" + rre.getFlightID();
+            }
             HttpURLConnection con = (HttpURLConnection) new URL(myurl).openConnection();
             con.setRequestProperty("Content-Type", "application/json;");
             con.setRequestProperty("Accept", "application/json");
@@ -66,18 +68,12 @@ public class ReservationCaller implements Callable {
             while (responseReader.hasNext()) {
                 response += responseReader.nextLine() + System.getProperty("line.separator");
             }
-            
+
             if (HttpResult < 400) {
                 result = gson.fromJson(response, ReservationResponseEntity.class);
             }
-                      
-            System.out.println(response);
-            System.out.println(con.getResponseCode());
-            System.out.println(con.getResponseMessage());
         } catch (Exception e) {
-
-        } finally {
-            //Persist the response
+            
         }
 
         return result;
