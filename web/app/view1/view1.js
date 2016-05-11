@@ -62,6 +62,8 @@ angular.module('myApp.view1', ['ngRoute'])
                 };
 
                 $scope.getFlights = function () {
+                    $scope.hidden = true;
+                      $scope.shown = false;
                     var year = $scope.date.getFullYear();
                     var month = $scope.date.getMonth();
                     var day = $scope.date.getDate();
@@ -73,6 +75,8 @@ angular.module('myApp.view1', ['ngRoute'])
                         contentType: "application/json"
                     }).success(function (data, status, headers, config) {
                         $scope.output = data;
+                        $scope.hidden = false;
+                      $scope.shown = true;
                     }).error(function (data, status, headers, config) {
                     })
                 };
