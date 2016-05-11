@@ -74,7 +74,10 @@
                             <td>{{unit.origin}}</td>
                             <td>{{unit.destination}}</td>
                             <td>{{unit.totalPrice}}</td>
-                            <td>
+                            <td ng-show="!isAuthenticated">
+                                <a href="#/login" type="button" class="btn-success">
+                                      Book</a></td>
+                            <td ng-show="isAuthenticated">
                                 <a href="#/view3" type="button" class="btn-success"
                                      ng-click="setSeats(unit.numberOfSeats);setBook();setAttri(output.airline, unit.flightID, unit.destination, username);">
                                       Book</a>
