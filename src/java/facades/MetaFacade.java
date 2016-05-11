@@ -45,7 +45,9 @@ public class MetaFacade {
         for (Future<String> future : futures) {
             sb.append(future.get(5, TimeUnit.SECONDS));
         }
-        return sb.toString();
+        String result = sb.toString();
+        
+            return sb.toString();
+        }
     }
     
-}

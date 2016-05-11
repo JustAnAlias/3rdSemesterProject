@@ -24,10 +24,11 @@ public class GenericExceptionMapper implements ExceptionMapper<Exception> {
   public Response toResponse(Exception ex) {
     JsonObject error = new JsonObject();
     JsonObject errorDetail = new JsonObject();
-    int statusCode = 500;
-    errorDetail.addProperty("code", statusCode);
+    int serverError = 500;
+    
+    errorDetail.addProperty("code", serverError);
     errorDetail.addProperty("message", "An unexpected problem occured on the server."+ex.getMessage());
     error.add("error", errorDetail);
-    return Response.status(statusCode).entity(gson.toJson(error)).type(MediaType.APPLICATION_JSON).build();
+    return Response.status(serverError).entity(gson.toJson(error)).type(MediaType.APPLICATION_JSON).build();
   }
 }
