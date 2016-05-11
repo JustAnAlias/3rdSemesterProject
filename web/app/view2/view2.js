@@ -39,7 +39,10 @@ angular.module('myApp.view2', ['ngRoute'])
                     opened: false
                 };
 
+
                 $scope.getFlights = function () {
+                     $scope.hidden = true;
+                      $scope.shown = false;
                     var year = $scope.date.getFullYear();
                     var month = $scope.date.getMonth();
                     var day = $scope.date.getDate();
@@ -50,7 +53,10 @@ angular.module('myApp.view2', ['ngRoute'])
                         skipAuthorization: true,
                         contentType: "application/json"
                     }).success(function (data, status, headers, config) {
+                        
                         $scope.output = data;
+                         $scope.hidden = false;
+                          $scope.shown = true;
                     }).error(function (data, status, headers, config) {
                     })
                 };
@@ -61,7 +67,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 var passenger = {};
 
                 // Set variables
-                $scope.setSeats = function (seats){
+                $scope.setSeats = function (seats) {
                     $scope.seats = seats;
                 };
                 $scope.setAttri = function (airline, flightId, destination, currentUser) {
@@ -89,7 +95,8 @@ angular.module('myApp.view2', ['ngRoute'])
                     // Loop through numberOfSeats to generate passengers
                     for (var i = 0; i < booking.numberOfSeats; i++) {
                         booking.passengers.push(Object.create(passenger));
-                    };
+                    }
+                    ;
                     InfoFactory.setBooking(booking);
                 };
-    }]);
+            }]);

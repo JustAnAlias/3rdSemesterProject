@@ -30,7 +30,8 @@
 
     </form>
     <br>
-    <div >
+    <div ng-show="hidden" ng-model="hidden"> <img src="assets/img/loading.gif"> </div>
+    <div ng-show="shown" ng-model="shown">
         <uib-accordion>
             <uib-accordion-group style="width: fit-content; border-left: 12em" ng-repeat="unit in output.flights| orderBy: 'totalPrice'" >
                 <uib-accordion-heading>
