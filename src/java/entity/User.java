@@ -20,6 +20,8 @@ public class User implements Serializable, IUser {
   
   @Id
   private String userName;
+  private String firstName;
+  private String lastName;
   
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "SystemUser_USERROLE", joinColumns = {
@@ -69,5 +71,23 @@ public class User implements Serializable, IUser {
   public void setUserName(String userName) {
     this.userName = userName;
   }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+  
+  
    
 }

@@ -1,5 +1,6 @@
 package facades;
 
+import entity.Role;
 import security.IUserFacade;
 import entity.User;
 import java.util.List;
@@ -57,5 +58,20 @@ public class UserFacade implements IUserFacade {
       em.close();
     }
   }
+  
+      public User addUser(User u) throws PasswordStorage.CannotPerformOperationException {
+        EntityManager em = emf.createEntityManager();
+        u.AddRole(em.find(Role.class, "User"));
+
+        try {
+            em.getTransaction().begin();
+            em.persist(u);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return u;
+    }
+    
 
 }
