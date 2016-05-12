@@ -68,16 +68,19 @@ angular.module('myApp.view1', ['ngRoute'])
                     var month = $scope.date.getMonth();
                     var day = $scope.date.getDate();
                     var date = new Date(year, month, day).toISOString();
+                    console.log(date);
                     return $http({
                         method: 'GET',
                         url: 'api/meta/' + $scope.from + '/' + $scope.dest + '/' + date + '/' + $scope.number,
                         skipAuthorization: true,
                         contentType: "application/json"
                     }).success(function (data, status, headers, config) {
+                        console.log(data);
                         $scope.output = data;
                         $scope.hidden = false;
                       $scope.shown = true;
                     }).error(function (data, status, headers, config) {
+                        console.log(data);
                     })
                 };
                 

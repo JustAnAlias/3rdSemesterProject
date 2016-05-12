@@ -27,7 +27,15 @@
         <button type="submit" class="btn btn-success">Search</button>
 
 
-
+        
+        <div ng-repeat="firstUnit in output">
+       <ul>
+         <li ng-repeat="flight in firstUnit.flights"> 
+         {{flight.flightNumber}} - {{flight.totalPrice}}
+         </li>
+       </ul>
+   </div>
+        
     </form>
     <br>
     <div class="loading" ng-show="hidden" ng-model="hidden"> <img src="assets/img/loading.gif"> </div>
