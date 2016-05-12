@@ -25,6 +25,7 @@ public class URLCaller implements Callable{
     private URLConnection urlConn;
     private BufferedReader reader;
     private StringBuilder sb;
+    boolean larsHasBadProtocol;
 
     public URLCaller(String baseUrl, String from, String to, String date, int tickets) {
         this.baseUrl = baseUrl;
@@ -32,6 +33,7 @@ public class URLCaller implements Callable{
         this.to = to;
         this.date = date;
         this.tickets = tickets;
+        larsHasBadProtocol = baseUrl.equals("http://angularairline-plaul.rhcloud.com");
         sb = new StringBuilder();
     }
     
@@ -39,10 +41,10 @@ public class URLCaller implements Callable{
     
     @Override
     public String call() throws Exception {
-        if (baseUrl==null) throw new Exception("fucktard!");
-        if (from==null) throw new Exception("fucktard!");
-        if (date==null) throw new Exception("fucktard!");
-        if (tickets<=0) throw new Exception("dumbass!");
+        if (baseUrl==null) throw new Exception("Couldn't find the f****ng airline");
+        if (from==null) throw new Exception("uhmm.. where are you planning on flying from");
+        if (date==null) throw new Exception("when are you going?");
+        if (tickets<=0) throw new Exception("how many tickets did you say?");
         
         
         if(to != null){
@@ -60,9 +62,15 @@ public class URLCaller implements Callable{
     
     private void goThere(){
         try {
+            String myUrl;
+                if(larsHasBadProtocol){
+                    myUrl = baseUrl + "/api/flightinfo/" + from + "/" + to + "/" + date + "/" + tickets;
+                }
+                else{
+                    myUrl = baseUrl + "/api/flights/" + from + "/" + to + "/" + date + "/" + tickets;
+                }
                 
-                String myurl = baseUrl + "/api/flightinfo/" + from + "/" + to + "/" + date + "/" + tickets;
-                URL url = new URL(myurl);
+                URL url = new URL(myUrl);
                 urlConn = url.openConnection();
                 if (urlConn != null) {
                     urlConn.setReadTimeout(60 * 1000);
@@ -84,9 +92,16 @@ public class URLCaller implements Callable{
     }
     private void dontCare(){
         try {
+            String myUrl;
 //                AirlineEntity ae = (AirlineEntity)a;
-                String myurl = baseUrl + "/api/flightinfo/" + from + "/" + date + "/" + tickets;
-                URL url = new URL(myurl);
+            if(larsHasBadProtocol){
+                    myUrl = baseUrl + "/api/flightinfo/" + from + "/" + date + "/" + tickets;
+                }
+                else{
+                    myUrl = baseUrl + "/api/flights/" + from + "/" + date + "/" + tickets;
+                }
+                
+                URL url = new URL(myUrl);
                 urlConn = url.openConnection();
                 if (urlConn != null) {
                     urlConn.setReadTimeout(60 * 1000);
