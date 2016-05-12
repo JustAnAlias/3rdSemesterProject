@@ -42,17 +42,21 @@ public class SearchFacade {
             Future<String> fut = executor.submit(c);
             futures.add(fut);
         }
+        int countResults = 0;
         for (Future<String> future : futures) {
-            sb.append(future.get(5, TimeUnit.SECONDS));
-            sb.append(",\n");
+            String tmp = future.get(5, TimeUnit.DAYS);
+            if (tmp.length() > 1) {
+                sb.append(future.get(5, TimeUnit.SECONDS));
+                sb.append(",\n");
+            }
+
         }
-        
+
         String result = sb.toString();
-        if (result.endsWith(",\n")){
+        if (result.endsWith(",\n")) {
             result = result.substring(0, result.lastIndexOf(","));
         }
         result = "[\n" + result + "\n]";
-            return result;
-        }
+        return result;
     }
-    
+}
