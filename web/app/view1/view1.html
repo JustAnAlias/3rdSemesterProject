@@ -33,11 +33,11 @@
     <br>
     <div ng-show="output.length === 0" class="ng-hide">Ingen resultater fundet til {{dest}}. Prøv igen !</div>
     <div class="loading" ng-show="hidden" ng-model="hidden"> <img src="assets/img/loading.gif"> </div>
-    <div ng-show="shown" ng-model="shown">
+    <div ng-show="shown" ng-model="shown" ng-repeat="airline in output">
         <uib-accordion>
-            <uib-accordion-group style="width: fit-content; border-left: 12em" ng-repeat="unit in output.flights">
+            <uib-accordion-group style="width: fit-content; border-left: 12em" ng-repeat="unit in airline.flights">
                 <uib-accordion-heading>
-                    {{output.airline}} {{unit.flightNumber}} - Price: {{unit.totalPrice}}
+                    {{airline.airline}} {{unit.flightNumber}} - Price: {{unit.totalPrice}}
                 </uib-accordion-heading>
                 <!--                <ul>
                                     <li><b>flightID: </b> {{unit.flightID}} </li>
