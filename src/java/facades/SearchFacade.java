@@ -45,7 +45,7 @@ public class SearchFacade {
         int countResults = 0;
         for (Future<String> future : futures) {
             String tmp = future.get(5, TimeUnit.DAYS);
-            if (tmp.length() < 1) {
+            if (tmp.length() > 0) {
                 sb.append(future.get(5, TimeUnit.SECONDS));
                 sb.append(",\n");
             }
