@@ -44,10 +44,15 @@ public class SearchFacade {
         }
         for (Future<String> future : futures) {
             sb.append(future.get(5, TimeUnit.SECONDS));
+            sb.append(",\n");
         }
-        String result = sb.toString();
         
-            return sb.toString();
+        String result = sb.toString();
+        if (result.endsWith(",\n")){
+            result = result.substring(0, result.lastIndexOf(","));
+        }
+        result = "[\n" + result + "\n]";
+            return result;
         }
     }
     
