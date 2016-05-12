@@ -5,9 +5,6 @@
  */
 package facades;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import entity.AirlineEntity;
 import java.io.*;
 import java.net.URL;
@@ -29,7 +26,6 @@ import java.util.concurrent.TimeoutException;
  */
 public class SearchFacade {
 
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
     ExecutorService executor;
     AirlineFacade af = new AirlineFacade();
     StringBuilder sb = new StringBuilder();
@@ -46,26 +42,19 @@ public class SearchFacade {
             Future<String> fut = executor.submit(c);
             futures.add(fut);
         }
-        List<String> resList = new ArrayList();
-        for (Future<String> future : futures) {
-            resList.add(future.get(5, TimeUnit.SECONDS));
-
-        }
-        String result="";
         
-        for (int i = 0; i < resList.size(); i++) {
-            if (resList.get(i).length() > 2) {
-                result+=(resList.get(i));
+        for (Future<String> future : futures) {
+            String tmp = future.get(5, TimeUnit.DAYS);
+            if (tmp.length() > 10) {
+                sb.append(tmp);
+                sb.append(",\n");
             }
-            if(resList.size()>i+1){
-                result+=",\n";
-            }
-            
         }
-//        String result = sb.toString();
-//        if (result.endsWith(",\n")) {
-//            result = result.substring(0, result.lastIndexOf(","));
-//        }
+
+        String result = sb.toString();
+        if (result.endsWith(",\n")) {
+            result = result.substring(0, result.lastIndexOf(","));
+        }
         result = "[\n" + result + "\n]";
         System.out.println(result);
         return result;
