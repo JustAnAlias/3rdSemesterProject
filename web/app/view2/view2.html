@@ -25,23 +25,13 @@
 
         Seats: <input size="1" type="text" name="number" ng-model="number" value="2" required>
         <button type="submit" class="btn btn-success">Search</button>
-
-
-        
-        <div ng-repeat="firstUnit in output">
-       <ul>
-         <li ng-repeat="flight in firstUnit.flights"> 
-         {{flight.flightNumber}} - {{flight.totalPrice}}
-         </li>
-       </ul>
-   </div>
         
     </form>
     <br>
     <div class="loading" ng-show="hidden" ng-model="hidden"> <img src="assets/img/loading.gif"> </div>
-    <div ng-show="shown" ng-model="shown">
+    <div ng-show="shown" ng-model="shown" ng-repeat="airline in output">
         <uib-accordion>
-            <uib-accordion-group style="width: fit-content; border-left: 12em" ng-repeat="unit in output.flights| orderBy: 'totalPrice'" >
+            <uib-accordion-group style="width: fit-content; border-left: 12em" ng-repeat="unit in airline.flights| orderBy: 'totalPrice'" >
                 <uib-accordion-heading>
                     {{output.airline}} {{unit.flightNumber}} - Price: {{unit.totalPrice}} 
                     <i class="pull-right glyphicon" ng-class="
