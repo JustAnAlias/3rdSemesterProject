@@ -24,7 +24,7 @@ import java.util.concurrent.TimeoutException;
  *
  * @author Eske Wolff & M!chael Rulle
  */
-public class MetaFacade {
+public class SearchFacade {
 
     ExecutorService executor;
     AirlineFacade af = new AirlineFacade();
@@ -38,7 +38,7 @@ public class MetaFacade {
         List<Future> futures = new ArrayList();
         for (Object a : listAirline) {
             AirlineEntity ae = (AirlineEntity) a;
-            Callable c = new URLCaller(ae.getUrl(), from, to, date, tickets);
+            Callable c = new SearchCaller(ae.getUrl(), from, to, date, tickets);
             Future<String> fut = executor.submit(c);
             futures.add(fut);
         }

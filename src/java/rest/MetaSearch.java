@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entity.AirlineEntity;
 import facades.AirlineFacade;
-import facades.MetaFacade;
+import facades.SearchFacade;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeoutException;
@@ -23,11 +23,11 @@ import javax.ws.rs.core.Response;
 public class MetaSearch {
 
     Gson gson;
-    MetaFacade mf;
+    SearchFacade mf;
 
     public MetaSearch() {
         gson = new GsonBuilder().setPrettyPrinting().create();
-        mf = new MetaFacade();
+        mf = new SearchFacade();
     }
 
     @GET

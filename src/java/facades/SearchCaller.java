@@ -16,7 +16,7 @@ import java.util.concurrent.Callable;
  *
  * @author Michael
  */
-public class URLCaller implements Callable{
+public class SearchCaller implements Callable{
     String from = null;
     String to = null;
     String date = null;
@@ -27,7 +27,7 @@ public class URLCaller implements Callable{
     private StringBuilder sb;
     boolean larsHasBadProtocol;
 
-    public URLCaller(String baseUrl, String from, String to, String date, int tickets) {
+    public SearchCaller(String baseUrl, String from, String to, String date, int tickets) {
         this.baseUrl = baseUrl;
         this.from = from;
         this.to = to;

@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  *
  * @author mr
  */
-public class MetaFacadeTest {
+public class SearchFacadeTest {
     String expected = "{\n" +
 "  \"airline\": \"AngularJS Airline\",\n" +
 "  \"flights\": [\n" +
@@ -42,7 +42,7 @@ public class MetaFacadeTest {
 "    }\n" +
 "  ]\n" +
 "}";
-    public MetaFacadeTest() {
+    public SearchFacadeTest() {
     }
     
     @BeforeClass
@@ -62,7 +62,7 @@ public class MetaFacadeTest {
     }
 
     /**
-     * Test of getFlights method, of class MetaFacade.
+     * Test of getFlights method, of class SearchFacade.
      */
     @Test
     public void testGetFlights() throws Exception {
@@ -72,11 +72,9 @@ public class MetaFacadeTest {
         String to = "STN";
         String date = "2016-05-12T22:00:00.000Z";
         int tickets = 2;
-        MetaFacade instance = new MetaFacade();
+        SearchFacade instance = new SearchFacade();
         String expResult = expected;
         String result = instance.getFlights(from, to, date, tickets);
         assertTrue(result.contains(expResult));
     }
-    
 }
-

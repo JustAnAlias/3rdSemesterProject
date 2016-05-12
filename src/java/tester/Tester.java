@@ -8,7 +8,7 @@ package tester;
 import entity.AirlineEntity;
 import exceptions.CouldNotAddEntityException;
 import facades.AirlineFacade;
-import facades.MetaFacade;
+import facades.SearchFacade;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Tester {
     public static void main(String[] args) throws CouldNotAddEntityException {
         
         AirlineFacade af = new AirlineFacade();
-        MetaFacade mf = new MetaFacade();
+        SearchFacade mf = new SearchFacade();
         AirlineEntity ae = new AirlineEntity("www.hej.dk", "asdad", true);
 //        ae.setUrl("http://angularairline-plaul.rhcloud.com");
 //        ae.setActive(true);
